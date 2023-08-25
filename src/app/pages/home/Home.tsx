@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../shared/components/Header';
-import Banner from '../shared/components/Banner';
-import Category from '../shared/components/Category';
-import ProductList from '../shared/components/ProductList';
-import Service from '../shared/components/Service';
-import Contact from '../shared/components/Contact';
-import Footer from '../shared/components/Footer';
-import data from '../data/data';
-import Product from '../models/product';
+import Header from '../../shared/components/Header';
+import ProductList from './components/ProductList';
+import Contact from '../../shared/components/Contact';
+import Footer from '../../shared/components/Footer';
+import data from '../../data/data';
+import Product from '../../models/product/product';
+import Banner from './components/Banner';
+import Category from './components/Category';
+import Service from './components/Service';
 
 const Home = () => {
   const [productList, setProductList] = useState<Product[]>([]);

@@ -1,9 +1,9 @@
-import { ProductProps } from '../models/product';
-import PRODUCT_STATUS from '../models/product-status';
 import prd1 from '../../assets/images/product-01.png';
 import prd2 from '../../assets/images/product-02.png';
 import prd3 from '../../assets/images/product-03.png';
 import prd4 from '../../assets/images/product-04.png';
+import PRODUCT_STATUS from '../models/product/product-status';
+import { ProductProps } from '../models/product/product.interface';
 
 const data: ProductProps[] = [
   {
@@ -31,7 +31,7 @@ const data: ProductProps[] = [
   {
     id: 4,
     name: 'Loose Textured T-Shirt',
-    image: prd1,
+    image: prd4,
     price: 119.99,
     status: PRODUCT_STATUS.AVAILABLE
   }
