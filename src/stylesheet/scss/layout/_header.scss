@@ -1,0 +1,40 @@
+/* HEADER */
+
+#header {
+  @include position(0, 0, null, 0, fixed);
+  z-index: 9;
+  .header-desktop {
+    margin-top: 48px;
+
+    .icon-item {
+      margin: 0 12px;
+      :last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #header {
+    background-color: map-get($color, white);
+  }
+  .header-desktop {
+    display: none;
+  }
+
+  .header-mobile {
+    display: flex;
+    padding: 20px 0;
+  }
+
+  .header-mobile-logo img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .navbar-mobile-list {
+    flex-direction: row-reverse;
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "editor.codeActionsOnSave": {
+        
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true
+    },
+    "prettier.bracketSameLine": false,
+    "editor.formatOnSave": true
+    
+}
