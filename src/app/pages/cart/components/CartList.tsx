@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
+import lottie from 'lottie-web';
 
+import cartEmptyAnim from '../../../../assets/animation/cart-emty.json'
 import CartItem from './CartItem';
 import CartItemModel from '../../../models/cart/cart-item';
 
@@ -13,36 +15,56 @@ interface CartListComponentProps {
 }
 
 const CartList = (props: CartListComponentProps) => {
+  const animationRef = useRef<any>(null);
+  
+
+  useEffect(()=>{
+    const animation = lottie.loadAnimation({
+      container: animationRef.current,
+      animationData : cartEmptyAnim,
+      loop :true,
+      autoplay :true
+    });
+    return () => animation.destroy();
+  },[props.carts]);
+
   return (
     <>
       <section className='section section-cart'>
         <div className='container'>
           <div id='shop-cart' className='cart-wrapper'>
+            {props.carts?.length > 0 ? 
             <table className='cart-table' id='cart-list'>
-              <thead>
-                <tr className='table-header'>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Subtotal</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {props.carts &&
-                  props.carts?.map((cartItem: CartItemModel) => {
-                    return (
-                      <CartItem
-                        cartItem={cartItem}
-                        key={cartItem.id}
-                        handleRemoveItem={props.handleRemoveItem}
-                        handleChangeQuantity={props.handleChangeQuantity}
-                      />
-                    );
-                  })}
-              </tbody>
-            </table>
+            <thead>
+              <tr className='table-header'>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.carts &&
+                props.carts?.map((cartItem: CartItemModel) => {
+                  return (
+                    <CartItem
+                      cartItem={cartItem}
+                      key={cartItem.id}
+                      handleRemoveItem={props.handleRemoveItem}
+                      handleChangeQuantity={props.handleChangeQuantity}
+                    />
+                  );
+                })}
+            </tbody>
+          </table> : 
+          <div className="cart-empty text-center">
+            <div className="cart-empty-animate" ref={animationRef}></div>
+            <p className="cart-empty-title">Opps, You dont have any item in cart !</p>
+          </div>
+          
+          }
             <div className='cart-total d-flex justify-between item-center'>
               <Link to={'/'} className='btn btn-primary'>
                 Back to home
