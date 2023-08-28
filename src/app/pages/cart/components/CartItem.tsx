@@ -1,15 +1,20 @@
-import React from 'react';
 import CartItemModel from '../../../models/cart/cart-item';
 
-const CartItem = (props: any) => {
-  const cartItem: CartItemModel = props.cartItem;
-  const handleDeleteItem = (idProduct:number) => {
-    props.handleRemoveItem(idProduct);
-  }
+interface CartItemComponentProps {
+  cartItem: CartItemModel;
+  handleRemoveItem: Function;
+  handleChangeQuantity: Function;
+}
 
-  const updateQuantity = (idProduct:number, quantity:number) => {
+const CartItem = (props: CartItemComponentProps) => {
+  const cartItem: CartItemModel = props.cartItem;
+  const handleDeleteItem = (idProduct: number) => {
+    props.handleRemoveItem(idProduct);
+  };
+
+  const updateQuantity = (idProduct: number, quantity: number) => {
     props.handleChangeQuantity(idProduct, quantity);
-  }
+  };
   return (
     <>
       <tr className='cart-item'>
@@ -25,23 +30,31 @@ const CartItem = (props: any) => {
             {cartItem.name}
           </a>
         </td>
-        <td className='product-price'>${(cartItem.finalPrice).toFixed(2)}</td>
+        <td className='product-price'>${cartItem.finalPrice.toFixed(2)}</td>
         <td className='product-quantity'>
-          <button data-index='/' className='btn-cart-minus' onClick={()=>updateQuantity(cartItem.id, -1)}>
+          <button
+            data-index='/'
+            className='btn-cart-minus'
+            onClick={() => updateQuantity(cartItem.id, -1)}
+          >
             -
           </button>
           <span id='prod-quantity-cartItem.id' className='quantity'>
             {cartItem.quantity}
           </span>
-          <button data-index='$cartItem.id' className='btn-cart-plus' onClick={()=>updateQuantity(cartItem.id, 1)}>
+          <button
+            data-index='$cartItem.id'
+            className='btn-cart-plus'
+            onClick={() => updateQuantity(cartItem.id, 1)}
+          >
             +
           </button>
         </td>
         <td id='product-subtotal-cartItem.id' className='product-subtotal'>
-          ${(cartItem.subTotal).toFixed(2)}
+          ${cartItem.subTotal.toFixed(2)}
         </td>
         <td className='product-remove'>
-          <button className='product-remove-link' onClick={()=>handleDeleteItem(cartItem.id)}>
+          <button className='product-remove-link' onClick={() => handleDeleteItem(cartItem.id)}>
             <i className='icon icon-small icon-trash'></i>
           </button>
         </td>

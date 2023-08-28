@@ -3,7 +3,12 @@ import PRODUCT_STATUS from '../../../models/product/product-status';
 import Product from '../../../models/product/product';
 import CartItem from '../../../models/cart/cart-item';
 
-const ProductItem = (props: any) => {
+interface ProductItemProps {
+  product: Product;
+  handleAddToCart: Function;
+}
+
+const ProductItem = (props: ProductItemProps) => {
   const product: Product = props.product;
 
   const addToCart = (e: React.MouseEvent) => {

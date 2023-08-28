@@ -2,7 +2,13 @@ import React from 'react';
 import Product from '../../../models/product/product';
 import ProductItem from './ProductItem';
 
-const ProductList = (props: any) => {
+interface ProductListComponentProps {
+  title: string;
+  data: Product[];
+  handleAddToCart: Function;
+}
+
+const ProductList = (props: ProductListComponentProps) => {
   return (
     <>
       <section className='section section-bestseller'>
@@ -17,7 +23,13 @@ const ProductList = (props: any) => {
             <ul className='row'>
               {props.data &&
                 props.data.map((product: Product) => {
-                  return <ProductItem product={product} key={product.id} handleAddToCart={props.handleAddToCart} />;
+                  return (
+                    <ProductItem
+                      product={product}
+                      key={product.id}
+                      handleAddToCart={props.handleAddToCart}
+                    />
+                  );
                 })}
             </ul>
           </div>

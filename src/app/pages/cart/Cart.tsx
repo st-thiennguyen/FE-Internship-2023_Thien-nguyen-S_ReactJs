@@ -1,32 +1,26 @@
-import React, { useState } from 'react';
 import CartList from './components/CartList';
 import CartHeader from './components/CartHeader';
-import { cart } from '../../shared/services';
 import CartItem from '../../models/cart/cart-item';
+import CartItemModel from '../../models/cart/cart-item';
 
-const Cart = () => {
-  const cartList: CartItem[] = cart.items;
+interface CartComponentProps {
+  cartList: CartItemModel[];
+  handleChangeQuantity: Function;
+  handleRemoveItem: Function;
+  cartTotal: number;
+}
 
-  const [carts, setCart] = useState(cartList);
-
-  const handleChangeQuantity = (idProduct: number, quantity: number) => {
-    cart.updateItem(idProduct, quantity);
-    setCart([...cart.items]);
-  };
-
-  const handleRemoveItem = (idProduct: number) => {
-    cart.deleteItem(idProduct);
-    setCart([...cart.items]);
-  };
+const Cart = (props: CartComponentProps) => {
+  const cartList: CartItem[] = props.cartList;
 
   return (
     <>
       <CartHeader />
       <CartList
-        carts={carts}
-        cartTotal={cart.getTotal()}
-        handleRemoveItem={handleRemoveItem}
-        handleChangeQuantity={handleChangeQuantity}
+        carts={cartList}
+        cartTotal={props.cartTotal}
+        handleRemoveItem={props.handleRemoveItem}
+        handleChangeQuantity={props.handleChangeQuantity}
       />
     </>
   );

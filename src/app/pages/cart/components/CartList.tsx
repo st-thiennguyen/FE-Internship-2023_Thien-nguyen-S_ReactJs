@@ -1,8 +1,16 @@
 import React from 'react';
 import CartItem from './CartItem';
 import CartItemModel from '../../../models/cart/cart-item';
+import { Link } from 'react-router-dom';
 
-const CartList = (props: any) => {
+interface CartListComponentProps {
+  carts: CartItemModel[];
+  cartTotal: number;
+  handleRemoveItem: Function;
+  handleChangeQuantity: Function;
+}
+
+const CartList = (props: CartListComponentProps) => {
   return (
     <>
       <section className='section section-cart'>
@@ -34,9 +42,9 @@ const CartList = (props: any) => {
               </tbody>
             </table>
             <div className='cart-total d-flex justify-between item-center'>
-              <a href='index.html' className='btn btn-primary'>
+              <Link to={'/'} className='btn btn-primary'>
                 Back to home
-              </a>
+              </Link>
               <div className='d-flex justify-end item-center'>
                 <p className='total-price'>
                   Total :{' '}

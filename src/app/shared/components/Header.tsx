@@ -5,14 +5,18 @@ import icUser from '../../../assets/images/icon-user.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const Header = (props: any) => {
+interface HeaderProps {
+  cartCount: number;
+}
+
+const Header = (props: HeaderProps) => {
   const location = useLocation();
   const [scrolling, setScrolling] = useState(location.pathname !== '/' ? true : false);
 
   const handleScroll = () => {
     if (window.scrollY > 0 || location.pathname !== '/') {
       setScrolling(true);
-    } else if(location.pathname === '/') {
+    } else if (location.pathname === '/') {
       setScrolling(false);
     }
   };
@@ -31,9 +35,9 @@ const Header = (props: any) => {
           <div className='header-desktop d-flex justify-between'>
             <div className='header-logo'>
               <h1 className='logo-heading'>
-                <a href='/#' className='header-logo-link'>
+                <Link to={'/'}  className='header-logo-link'>
                   <img src={logo} alt='Logo E shop' className='logo-img' />
-                </a>
+                </Link>
               </h1>
             </div>
             <nav className='header-navbar'>
