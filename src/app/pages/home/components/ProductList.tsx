@@ -17,7 +17,7 @@ const ProductList = (props: any) => {
             <ul className='row'>
               {props.data &&
                 props.data.map((product: Product) => {
-                  return <ProductItem product={product} key={product.id} />;
+                  return <ProductItem product={product} key={product.id} handleAddToCart={props.handleAddToCart} />;
                 })}
             </ul>
           </div>

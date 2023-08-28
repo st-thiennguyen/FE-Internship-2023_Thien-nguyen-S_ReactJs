@@ -17,8 +17,6 @@ const Header = (props: any) => {
     }
   };
 
-
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -68,7 +66,7 @@ const Header = (props: any) => {
                   <Link className='icon-link' to={'/cart'}>
                     <img src={icCart} alt='Icon of cart' />
                     <span id='cart-count' className='cart-count d-flex justify-center item-center'>
-                      {}
+                      {props.cartCount}
                     </span>
                   </Link>
                 </li>

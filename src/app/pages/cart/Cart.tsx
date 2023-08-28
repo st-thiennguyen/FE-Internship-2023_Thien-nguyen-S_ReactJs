@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../../shared/components/Header';
-import Footer from '../../shared/components/Footer';
+import React, { useState } from 'react';
 import CartList from './components/CartList';
 import CartHeader from './components/CartHeader';
 import { cart } from '../../shared/services';
@@ -23,7 +21,6 @@ const Cart = () => {
 
   return (
     <>
-      <Header />
       <CartHeader />
       <CartList
         carts={carts}
@@ -31,7 +28,6 @@ const Cart = () => {
         handleRemoveItem={handleRemoveItem}
         handleChangeQuantity={handleChangeQuantity}
       />
-      <Footer />
     </>
   );
 };
