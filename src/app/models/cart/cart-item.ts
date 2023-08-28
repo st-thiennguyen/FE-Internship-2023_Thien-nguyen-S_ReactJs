@@ -1,7 +1,12 @@
-import Product from '../product/product';
-import CartItemProps from './cart-item.interface';
+import Product, { IProduct } from '../product/product';
 
-class CartItemModel implements CartItemProps {
+interface ICartItem extends Omit<IProduct, 'status'> {
+  quantity: number;
+  subTotal: number;
+  finalPrice: number;
+}
+
+class CartItemModel implements ICartItem {
   subTotal: number;
   id: number;
   name: string;
@@ -12,12 +17,12 @@ class CartItemModel implements CartItemProps {
   finalPrice: number;
   constructor({ id, name, image, price, discount, finalPrice }: Product, quantity: number) {
     this.id = id;
-    this.name = name;
-    this.image = image;
-    this.price = price;
-    this.discount = discount;
-    this.quantity = quantity;
-    this.finalPrice = finalPrice;
+    this.name = name || '';
+    this.image = image || '';
+    this.price = price || 0;
+    this.discount = discount || 0;
+    this.quantity = quantity || 0;
+    this.finalPrice = finalPrice || 0;
     this.subTotal = finalPrice * this.quantity;
   }
 }

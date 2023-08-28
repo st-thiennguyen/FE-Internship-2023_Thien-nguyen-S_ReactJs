@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
+import data from '../../shared/data/data';
 import ProductList from './components/ProductList';
 import Contact from '../../shared/components/Contact';
-import data from '../../data/data';
 import Product from '../../models/product/product';
 import Banner from './components/Banner';
 import Category from './components/Category';

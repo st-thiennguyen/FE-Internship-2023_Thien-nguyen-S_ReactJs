@@ -1,8 +1,18 @@
-import { GLOBAL_KEY } from '../../utils/contant';
+import { GLOBAL_KEY } from '../../shared/constants/constants';
 import CartItem from './cart-item';
-import CartProps from './cart.interface';
 
-class Cart implements CartProps {
+interface ICart {
+  items: CartItem[];
+  addItem(product: CartItem): void;
+  updateItem(idProd: number, quantity: number): void;
+  saveCart(): void;
+  deleteItem(idProd: number): void;
+  getTotal(): number;
+  cartCount(): number;
+  getCart(): void;
+}
+
+class Cart implements ICart {
   items: CartItem[];
   constructor(items: CartItem[]) {
     this.items = items;

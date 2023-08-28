@@ -1,5 +1,6 @@
 import React from 'react';
-import PRODUCT_STATUS from '../../../models/product/product-status';
+
+import {PRODUCT_STATUS} from '../../../shared/constants/constants';
 import Product from '../../../models/product/product';
 import CartItem from '../../../models/cart/cart-item';
 
@@ -34,11 +35,11 @@ const ProductItem = (props: ProductItemProps) => {
                   Add to cart
                 </button>
               </div>
-              {product.status === PRODUCT_STATUS.OUT_OF_STOCK ? (
+              {product.status === PRODUCT_STATUS.OUT_OF_STOCK && (
                 <span className='bagde bagde-grey product-status'>Out of stock</span>
-              ) : null}
+              )}
               {product.discount ? (
-                <span className='sale-product bagde bagde-red'>-${product.discount}%</span>
+                <span className='sale-product bagde bagde-red'>-{product.discount}%</span>
               ) : null}
             </div>
             <div>
@@ -46,9 +47,9 @@ const ProductItem = (props: ProductItemProps) => {
             </div>
             <div className='product-price d-flex justify-between'>
               {product.discount ? (
-                <span className='product-price-sale'>$ ${product.finalPrice}</span>
+                <span className='product-price-sale'>${(product.finalPrice)?.toFixed(2)}</span>
               ) : null}
-              <span className='product-price-base'>${product.price}</span>
+              <span className='product-price-base'>${(product.price)?.toFixed(2)}</span>
             </div>
           </a>
         </div>

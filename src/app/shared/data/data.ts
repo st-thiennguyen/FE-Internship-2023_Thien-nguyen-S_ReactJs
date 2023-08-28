@@ -1,11 +1,11 @@
-import prd1 from '../../assets/images/product-01.png';
-import prd2 from '../../assets/images/product-02.png';
-import prd3 from '../../assets/images/product-03.png';
-import prd4 from '../../assets/images/product-04.png';
-import PRODUCT_STATUS from '../models/product/product-status';
-import { ProductProps } from '../models/product/product.interface';
+import prd1 from '../../../assets/images/product-01.png';
+import prd2 from '../../../assets/images/product-02.png';
+import prd3 from '../../../assets/images/product-03.png';
+import prd4 from '../../../assets/images/product-04.png';
+import { IProduct } from '../../models/product/product';
+import { PRODUCT_STATUS } from '../constants/constants';
 
-const data: ProductProps[] = [
+const data: IProduct[] = [
   {
     id: 1,
     name: 'T-Shirt Summer Vibes',

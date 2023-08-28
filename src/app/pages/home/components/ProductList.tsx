@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Product from '../../../models/product/product';
 import ProductItem from './ProductItem';
 
@@ -22,7 +23,7 @@ const ProductList = (props: ProductListComponentProps) => {
           <div id='product-bestseller' className='product-list'>
             <ul className='row'>
               {props.data &&
-                props.data.map((product: Product) => {
+                props.data?.map((product: Product) => {
                   return (
                     <ProductItem
                       product={product}

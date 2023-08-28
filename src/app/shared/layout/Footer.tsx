@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../assets/images/ic-logo.svg';
+import logo from '../../../assets/icons/ic-logo.svg';
 
 const Footer = ()  => {
   return (

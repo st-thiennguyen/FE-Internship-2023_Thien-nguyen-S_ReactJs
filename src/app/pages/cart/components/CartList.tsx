@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
+
 import CartItem from './CartItem';
 import CartItemModel from '../../../models/cart/cart-item';
-import { Link } from 'react-router-dom';
 
 interface CartListComponentProps {
   carts: CartItemModel[];
@@ -29,7 +31,7 @@ const CartList = (props: CartListComponentProps) => {
               </thead>
               <tbody>
                 {props.carts &&
-                  props.carts.map((cartItem: CartItemModel) => {
+                  props.carts?.map((cartItem: CartItemModel) => {
                     return (
                       <CartItem
                         cartItem={cartItem}
@@ -49,12 +51,14 @@ const CartList = (props: CartListComponentProps) => {
                 <p className='total-price'>
                   Total :{' '}
                   <span className='price' id='cart-total-price'>
-                    ${props.cartTotal.toFixed(2)}
+                    ${props.cartTotal?.toFixed(2)}
                   </span>
                 </p>
-                <a href='/' className='cart-checkout btn btn-primary'>
-                  Proceed checkout
-                </a>
+                {props.carts?.length > 0 && (
+                  <a href='/' className='cart-checkout btn btn-primary'>
+                    Proceed checkout
+                  </a>
+                )}
               </div>
             </div>
           </div>

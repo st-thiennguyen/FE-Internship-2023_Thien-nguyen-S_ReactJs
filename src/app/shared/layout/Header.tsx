@@ -1,7 +1,7 @@
-import logo from '../../../assets/images/ic-logo.svg';
-import icSearch from '../../../assets/images/icon-search.svg';
-import icCart from '../../../assets/images/icon-cart.svg';
-import icUser from '../../../assets/images/icon-user.svg';
+import logo from '../../../assets/icons/ic-logo.svg';
+import icSearch from '../../../assets/icons/icon-search.svg';
+import icCart from '../../../assets/icons/icon-cart.svg';
+import icUser from '../../../assets/icons/icon-user.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import icArrowRight from '../../../../assets/images/icon-arrow-right.png';
+
+import icArrowRight from '../../../../assets/icons/icon-arrow-right.png';
 
 const Banner = () => {
   return (

@@ -16,12 +16,17 @@ const Cart = (props: CartComponentProps) => {
   return (
     <>
       <CartHeader />
-      <CartList
+      {cartList.length > 0 ? <CartList
         carts={cartList}
         cartTotal={props.cartTotal}
         handleRemoveItem={props.handleRemoveItem}
         handleChangeQuantity={props.handleChangeQuantity}
-      />
+      /> : 
+      <div className="">
+        <div className="cart-empty-animation"></div>
+        <p className="cart-empty-title text-center">Opps, Your cart is empty</p>
+      </div>
+      }
     </>
   );
 };

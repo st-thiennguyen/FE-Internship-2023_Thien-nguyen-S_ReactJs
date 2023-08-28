@@ -1,7 +1,15 @@
-import PRODUCT_STATUS from './product-status';
-import { ProductProps } from './product.interface';
+import { PRODUCT_STATUS } from '../../shared/constants/constants';
 
-class Product implements ProductProps {
+export interface IProduct {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  discount?: number;
+  status: PRODUCT_STATUS;
+}
+
+class Product implements IProduct {
   id: number;
   name: string;
   image: string;
@@ -9,13 +17,13 @@ class Product implements ProductProps {
   discount: number;
   status: PRODUCT_STATUS;
   finalPrice: number;
-  constructor({ id, name, image, price, discount, status }: ProductProps) {
+  constructor({ id, name, image, price, discount, status }: IProduct) {
     this.id = id;
-    this.name = name;
-    this.image = image;
-    this.price = price;
+    this.name = name || '';
+    this.image = image || '';
+    this.price = price || 0;
     this.discount = discount ?? 0;
-    this.status = status;
+    this.status = status || PRODUCT_STATUS.AVAILABLE;
     this.finalPrice = this.price - (this.price / 100) * this.discount;
   }
 }

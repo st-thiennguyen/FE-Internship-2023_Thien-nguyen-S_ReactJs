@@ -1,4 +1,6 @@
-import React from 'react';
+import category01 from '../../../../assets/images/category-01.png';
+import category02 from '../../../../assets/images/category-02.png';
+import category03 from '../../../../assets/images/category-03.png';
 
 const Category = () => {
   return (
@@ -8,7 +10,7 @@ const Category = () => {
           <ul className='category-list row'>
             <li className='category-item col col-6 col-sm-12'>
               <div className='category'>
-                <img src={require('../../../../assets/images/category-01.png')} aria-hidden alt='Image of category New arrivalsare' />
+                <img src={category01} aria-hidden alt='Image of category New arrivalsare' />
                 <div className='category-content d-flex flex-column justify-end'>
                   <h4 className='category-title'>New arrivalsare now in!</h4>
                   <a href='/#' className='btn'>
@@ -21,7 +23,7 @@ const Category = () => {
             <li className='category-item col col-3 col-sm-6'>
               <div className='category'>
                 <img
-                  src={require('../../../../assets/images/category-02.png')}
+                  src={category02}
                   aria-hidden
                   alt='Image of category Basic t-shirts'
                 />
@@ -37,7 +39,7 @@ const Category = () => {
             <li className='category-item col col-3 col-sm-6'>
               <div className='category'>
                 <img
-                  src={require('../../../../assets/images/category-03.png')}
+                  src={category03}
                   aria-hidden
                   alt='Image of category Sale this summer'
                 />
