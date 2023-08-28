@@ -16,9 +16,13 @@ interface CartListComponentProps {
 
 const CartList = (props: CartListComponentProps) => {
   const animationRef = useRef<any>(null);
+
+  const lengthCart = props.carts.length > 0;
   
 
-  useEffect(()=>{
+  useEffect(()=>{   
+    console.log("Check");
+     
     const animation = lottie.loadAnimation({
       container: animationRef.current,
       animationData : cartEmptyAnim,
@@ -26,7 +30,7 @@ const CartList = (props: CartListComponentProps) => {
       autoplay :true
     });
     return () => animation.destroy();
-  },[props.carts]);
+  },[lengthCart]);
 
   return (
     <>
