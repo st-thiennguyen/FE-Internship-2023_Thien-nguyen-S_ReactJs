@@ -10,7 +10,7 @@ class Cart implements CartProps {
   }
 
   getCart(): void {
-    const cart = JSON.parse(JSON.stringify(localStorage.getItem(GLOBAL_KEY.CART))) || [];
+    const cart = JSON.parse(localStorage.getItem(GLOBAL_KEY.CART)!) || [];
     this.items = cart;
   }
 
@@ -61,7 +61,7 @@ class Cart implements CartProps {
   }
 
   cartCount(): number {
-    return this.items.reduce((total, item) => (total += item.quantity), 0);
+    return this.items.reduce((total, item) => (total += item.quantity), 0) ?? 0;
   }
 }
 

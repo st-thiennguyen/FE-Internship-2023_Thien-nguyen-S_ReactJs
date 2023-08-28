@@ -1,7 +1,7 @@
 import Product from '../product/product';
 import CartItemProps from './cart-item.interface';
 
-class CartItem implements CartItemProps {
+class CartItemModel implements CartItemProps {
   subTotal: number;
   id: number;
   name: string;
@@ -22,4 +22,4 @@ class CartItem implements CartItemProps {
   }
 }
 
-export default CartItem;
+export default CartItemModel;

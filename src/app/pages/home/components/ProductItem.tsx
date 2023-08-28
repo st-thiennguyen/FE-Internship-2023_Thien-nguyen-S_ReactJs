@@ -1,13 +1,16 @@
 import React from 'react';
 import PRODUCT_STATUS from '../../../models/product/product-status';
 import Product from '../../../models/product/product';
-import { handleAddToCart } from '../../../shared/services';
 import CartItem from '../../../models/cart/cart-item';
+import { handleAddToCart } from '../../../shared/services';
 
 const ProductItem = (props:any) => {
     const product:Product = props.product;
 
-    const addToCart = () => {
+
+
+    const addToCart = (e:React.MouseEvent) => {
+        e.preventDefault();
         const cartItem = new CartItem(product, 1);
         handleAddToCart(cartItem);
     }

@@ -1,6 +1,6 @@
 /* HEADER */
 
-#header {
+.header {
   @include position(0, 0, null, 0, fixed);
   z-index: 9;
   .header-desktop {
@@ -15,10 +15,19 @@
   }
 }
 
+.header.header-change {
+  .header-desktop {
+    margin-top: 30px;
+  }
+  background-color: #333;
+  color: white;
+}
+
 @media screen and (max-width: 768px) {
-  #header {
+  .header {
     background-color: map-get($color, white);
   }
+
   .header-desktop {
     display: none;
   }

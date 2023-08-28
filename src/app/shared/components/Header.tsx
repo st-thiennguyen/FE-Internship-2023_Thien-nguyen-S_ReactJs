@@ -1,13 +1,34 @@
-import React from 'react';
 import logo from '../../../assets/images/ic-logo.svg';
 import icSearch from '../../../assets/images/icon-search.svg';
 import icCart from '../../../assets/images/icon-cart.svg';
 import icUser from '../../../assets/images/icon-user.svg';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const Header = ()  => {
+const Header = (props: any) => {
+  const location = useLocation();
+  const [scrolling, setScrolling] = useState(location.pathname !== '/' ? true : false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0 || location.pathname !== '/') {
+      setScrolling(true);
+    } else if(location.pathname === '/') {
+      setScrolling(false);
+    }
+  };
+
+
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
   return (
     <>
-      <header id='header' className='header'>
+      <header id='header' className={`header ${scrolling ? 'header-change' : ''}`}>
         <div className='container'>
           <div className='header-desktop d-flex justify-between'>
             <div className='header-logo'>
@@ -44,12 +65,12 @@ const Header = ()  => {
                   </a>
                 </li>
                 <li className='header-cart icon-item'>
-                  <a className='icon-link' href='cart.html'>
+                  <Link className='icon-link' to={'/cart'}>
                     <img src={icCart} alt='Icon of cart' />
                     <span id='cart-count' className='cart-count d-flex justify-center item-center'>
-                      0
+                      {}
                     </span>
-                  </a>
+                  </Link>
                 </li>
                 <li className='icon-item'>
                   <a className='icon-link' href='/#'>
