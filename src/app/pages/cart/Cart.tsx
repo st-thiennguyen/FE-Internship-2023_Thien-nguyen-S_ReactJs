@@ -1,7 +1,6 @@
 import CartList from './components/CartList';
 import CartHeader from './components/CartHeader';
-import CartItem from '../../models/cart/cart-item';
-import CartItemModel from '../../models/cart/cart-item';
+import { CartItemModel } from '../../models';
 
 interface CartComponentProps {
   cartList: CartItemModel[];
@@ -11,7 +10,7 @@ interface CartComponentProps {
 }
 
 const Cart = (props: CartComponentProps) => {
-  const cartList: CartItem[] = props.cartList;
+  const cartList: CartItemModel[] = props.cartList;
 
   return (
     <>

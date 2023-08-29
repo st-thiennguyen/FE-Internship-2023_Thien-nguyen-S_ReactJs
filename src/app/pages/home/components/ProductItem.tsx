@@ -1,20 +1,19 @@
 import React from 'react';
 
 import {PRODUCT_STATUS} from '../../../shared/constants/constants';
-import Product from '../../../models/product/product';
-import CartItem from '../../../models/cart/cart-item';
+import { CartItemModel, ProductModel } from '../../../models';
 
 interface ProductItemProps {
-  product: Product;
+  product: ProductModel;
   handleAddToCart: Function;
 }
 
 const ProductItem = (props: ProductItemProps) => {
-  const product: Product = props.product;
+  const product: ProductModel = props.product;
 
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-    const cartItem = new CartItem(product, 1);
+    const cartItem = new CartItemModel(product, 1);
     props.handleAddToCart(cartItem);
   };
   return (

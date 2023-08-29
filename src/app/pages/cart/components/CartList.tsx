@@ -5,7 +5,7 @@ import lottie from 'lottie-web';
 
 import cartEmptyAnim from '../../../../assets/animation/cart-emty.json'
 import CartItem from './CartItem';
-import CartItemModel from '../../../models/cart/cart-item';
+import { CartItemModel } from '../../../models';
 
 interface CartListComponentProps {
   carts: CartItemModel[];
@@ -20,9 +20,7 @@ const CartList = (props: CartListComponentProps) => {
   const lengthCart = props.carts.length > 0;
   
 
-  useEffect(()=>{   
-    console.log("Check");
-     
+  useEffect(()=>{        
     const animation = lottie.loadAnimation({
       container: animationRef.current,
       animationData : cartEmptyAnim,

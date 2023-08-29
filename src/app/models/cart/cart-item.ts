@@ -1,4 +1,4 @@
-import Product, { IProduct } from '../product/product';
+import { IProduct, ProductModel } from '../product/product';
 
 interface ICartItem extends Omit<IProduct, 'status'> {
   quantity: number;
@@ -6,7 +6,7 @@ interface ICartItem extends Omit<IProduct, 'status'> {
   finalPrice: number;
 }
 
-class CartItemModel implements ICartItem {
+export class CartItemModel implements ICartItem {
   subTotal: number;
   id: number;
   name: string;
@@ -15,7 +15,7 @@ class CartItemModel implements ICartItem {
   discount: number;
   quantity: number;
   finalPrice: number;
-  constructor({ id, name, image, price, discount, finalPrice }: Product, quantity: number) {
+  constructor({ id, name, image, price, discount, finalPrice }: ProductModel, quantity: number) {
     this.id = id;
     this.name = name || '';
     this.image = image || '';
@@ -26,5 +26,3 @@ class CartItemModel implements ICartItem {
     this.subTotal = finalPrice * this.quantity;
   }
 }
-
-export default CartItemModel;

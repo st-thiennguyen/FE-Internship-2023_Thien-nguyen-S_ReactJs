@@ -9,7 +9,8 @@ interface HeaderProps {
   cartCount: number;
 }
 
-const Header = (props: HeaderProps) => {
+export const Header = (props: HeaderProps) => {
+  
   const location = useLocation();
   const [scrolling, setScrolling] = useState(location.pathname !== '/' ? true : false);
 
@@ -113,5 +114,3 @@ const Header = (props: HeaderProps) => {
     </>
   );
 };
-
-export default Header;

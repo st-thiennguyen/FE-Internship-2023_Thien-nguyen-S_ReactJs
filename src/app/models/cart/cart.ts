@@ -1,30 +1,34 @@
-import { GLOBAL_KEY } from '../../shared/constants/constants';
-import CartItem from './cart-item';
+import { GLOBAL_KEY } from '../../shared/constants';
+import { CartItemModel } from './cart-item';
 
 interface ICart {
-  items: CartItem[];
-  addItem(product: CartItem): void;
+  items: CartItemModel[];
+  addItem(product: CartItemModel): void;
   updateItem(idProd: number, quantity: number): void;
   saveCart(): void;
   deleteItem(idProd: number): void;
   getTotal(): number;
   cartCount(): number;
-  getCart(): void;
 }
 
-class Cart implements ICart {
-  items: CartItem[];
-  constructor(items: CartItem[]) {
-    this.items = items;
-    this.getCart();
+export class CartModel implements ICart {
+  items: CartItemModel[];
+
+  constructor(items?: CartItemModel[]) {
+    this.items = items ?? this.getCartDatabase();
   }
 
-  getCart(): void {
-    const cart = JSON.parse(localStorage.getItem(GLOBAL_KEY.CART)!) || [];
-    this.items = cart;
+  getCart() {
+    return this.items;
   }
 
-  addItem(item: CartItem): void {
+  getCartDatabase(): CartItemModel[] {
+    return JSON.parse(localStorage.getItem(GLOBAL_KEY.CART)!) || [];
+  }
+
+  addItem(item: CartItemModel): void {
+    console.log(this.items, 'INput');
+
     const cartItem = this.items.find((prod) => prod.id === item.id);
     if (!cartItem) {
       this.items.push(item);
@@ -32,13 +36,15 @@ class Cart implements ICart {
       cartItem.quantity += item.quantity;
       cartItem.subTotal += item.finalPrice * item.quantity;
     }
+    console.log(this.items, 'Out put');
+
     this.saveCart();
   }
 
   updateItem(idProd: number, quantity: number): void {
     let cartItem = this.items.find((item) => item.id === idProd);
     if (cartItem !== null) {
-      cartItem!.quantity += quantity;
+      cartItem!.quantity = quantity;
       cartItem!.subTotal = cartItem!.finalPrice * cartItem!.quantity;
     }
     if (cartItem?.quantity === 0) {
@@ -49,7 +55,7 @@ class Cart implements ICart {
 
   getSubTotalItem(cartItemId: number): number {
     const item = this.items.find((prod) => prod.id === cartItemId);
-    return item ? item.subTotal : 0;
+    return item?.subTotal || 0;
   }
 
   saveCart(): void {
@@ -63,7 +69,7 @@ class Cart implements ICart {
 
   getQuantityItem(cartItemId: number): number {
     const item = this.items.find((prod) => prod.id === cartItemId);
-    return item ? item.quantity : 0;
+    return item?.quantity || 0;
   }
 
   getTotal(): number {
@@ -71,8 +77,6 @@ class Cart implements ICart {
   }
 
   cartCount(): number {
-    return this.items.reduce((total, item) => (total += item.quantity), 0) ?? 0;
+    return this.items.reduce((total, item) => (total += item.quantity), 0);
   }
 }
-
-export default Cart;

@@ -5,7 +5,7 @@ import prd4 from '../../../assets/images/product-04.png';
 import { IProduct } from '../../models/product/product';
 import { PRODUCT_STATUS } from '../constants/constants';
 
-const data: IProduct[] = [
+export const data: IProduct[] = [
   {
     id: 1,
     name: 'T-Shirt Summer Vibes',
@@ -36,5 +36,3 @@ const data: IProduct[] = [
     status: PRODUCT_STATUS.AVAILABLE
   }
 ];
-
-export default data;

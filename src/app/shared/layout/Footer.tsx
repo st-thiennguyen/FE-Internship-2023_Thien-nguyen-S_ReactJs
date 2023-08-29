@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../../assets/icons/ic-logo.svg';
 
-const Footer = ()  => {
+export const Footer = ()  => {
   return (
     <>
       <footer id='footer' className='footer'>
@@ -147,5 +147,3 @@ const Footer = ()  => {
     </>
   );
 };
-
-export default Footer;

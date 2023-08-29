@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
-import data from '../../shared/data/data';
 import ProductList from './components/ProductList';
 import Contact from '../../shared/components/Contact';
-import Product from '../../models/product/product';
 import Banner from './components/Banner';
 import Category from './components/Category';
 import Service from './components/Service';
+import { ProductModel } from '../../models';
+import { data } from '../../shared/data/index';
 
 interface HomeComponentProps {
   handleAddToCart: Function;
 }
 
 const Home = (props: HomeComponentProps) => {
-  const [productList, setProductList] = useState<Product[]>([]);
+  const [productList, setProductList] = useState<ProductModel[]>([]);
 
   useEffect(() => {
-    const dataProduct = data.map((product) => new Product(product));
+    const dataProduct = data.map((product) => new ProductModel(product));
     setProductList([...dataProduct]);
   }, []);
 

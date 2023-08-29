@@ -1,4 +1,4 @@
-import CartItemModel from '../../../models/cart/cart-item';
+import { CartItemModel } from "../../../models";
 
 interface CartItemComponentProps {
   cartItem: CartItemModel;
@@ -35,7 +35,7 @@ const CartItem = (props: CartItemComponentProps) => {
           <button
             data-index='/'
             className='btn-cart-minus'
-            onClick={() => updateQuantity(cartItem.id, -1)}
+            onClick={() => updateQuantity(cartItem.id, cartItem.quantity -1)}
           >
             -
           </button>
@@ -45,7 +45,7 @@ const CartItem = (props: CartItemComponentProps) => {
           <button
             data-index='$cartItem.id'
             className='btn-cart-plus'
-            onClick={() => updateQuantity(cartItem.id, 1)}
+            onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
           >
             +
           </button>
