@@ -1,25 +1,30 @@
 import React from 'react';
 
-const Contact = ()  => {
+const Contact = () => {
   return (
     <>
-      <section className='section section-contact'>
-        <div className='container'>
-          <div className='contact-wrapper row item-center'>
-            <div className='contact-description col col-6 col-sm-12'>
-              <p className='contact-txt'>
-                Subscribe to our newsletter andreceive exclusive offers every week
+      <section className="section section-contact">
+        <div className="container">
+          <div className="contact-wrapper row item-center">
+            <div className="contact-description col col-6 col-sm-12">
+              <p className="contact-txt">
+                Subscribe to our newsletter andreceive exclusive offers every
+                week
               </p>
             </div>
-            <div className='contact-form col col-6 col-sm-12'>
-              <form action='#' className='form-contact'>
+            <div className="contact-form col col-6 col-sm-12">
+              <form action="#" className="form-contact">
                 <input
-                  type='email'
-                  className='form-contact-input'
-                  placeholder='Enter your email'
+                  type="email"
+                  className="form-contact-input"
+                  placeholder="Enter your email"
                   required
                 />
-                <input className='btn btn-primary btn-subcribe' type='submit' value='SUBSCRIBE' />
+                <input
+                  className="btn btn-primary btn-subcribe"
+                  type="submit"
+                  value="SUBSCRIBE"
+                />
               </form>
             </div>
           </div>

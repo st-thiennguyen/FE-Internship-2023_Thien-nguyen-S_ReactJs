@@ -1,4 +1,4 @@
-import { GLOBAL_KEY } from '../../shared/constants';
+import { StorageKey } from '../../shared/constants';
 import { CartItemModel } from './cart-item';
 
 interface ICart {
@@ -23,7 +23,7 @@ export class CartModel implements ICart {
   }
 
   getCartDatabase(): CartItemModel[] {
-    return JSON.parse(localStorage.getItem(GLOBAL_KEY.CART)!) || [];
+    return JSON.parse(localStorage.getItem(StorageKey.CART)!) || [];
   }
 
   addItem(item: CartItemModel): void {
@@ -59,7 +59,7 @@ export class CartModel implements ICart {
   }
 
   saveCart(): void {
-    localStorage.setItem(GLOBAL_KEY.CART, JSON.stringify(this.items));
+    localStorage.setItem(StorageKey.CART, JSON.stringify(this.items));
   }
 
   deleteItem(idProd: number): void {

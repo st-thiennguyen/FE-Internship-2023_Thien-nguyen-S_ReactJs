@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {PRODUCT_STATUS} from '../../../shared/constants/constants';
 import { CartItemModel, ProductModel } from '../../../models';
+import { ProductStatus } from '../../../shared/constants/constants';
 
 interface ProductItemProps {
   product: ProductModel;
@@ -18,37 +18,54 @@ const ProductItem = (props: ProductItemProps) => {
   };
   return (
     <>
-      <li className='col col-3 col-sm-6'>
-        <div className='product'>
-          <a className={`product-action ${product.discount ? 'discounted' : null}`} href='/#'>
-            <div className='product-image'>
+      <li className="col col-3 col-sm-6">
+        <div className="product">
+          <a
+            className={`product-action ${
+              product.discount ? 'discounted' : null
+            }`}
+            href="/#"
+          >
+            <div className="product-image">
               <img src={product.image} alt={product.name} />
-              <div className='product-cart d-flex justify-center item-center'>
+              <div className="product-cart d-flex justify-center item-center">
                 <button
-                  disabled={product.status === PRODUCT_STATUS.OUT_OF_STOCK ? true : false}
+                  disabled={
+                    product.status === ProductStatus.OUT_OF_STOCK ? true : false
+                  }
                   className={`btn btn-cart-add ${
-                    product.status === PRODUCT_STATUS.OUT_OF_STOCK ? 'disabled' : ''
+                    product.status === ProductStatus.OUT_OF_STOCK
+                      ? 'disabled'
+                      : ''
                   }`}
                   onClick={addToCart}
                 >
                   Add to cart
                 </button>
               </div>
-              {product.status === PRODUCT_STATUS.OUT_OF_STOCK && (
-                <span className='bagde bagde-grey product-status'>Out of stock</span>
+              {product.status === ProductStatus.OUT_OF_STOCK && (
+                <span className="bagde bagde-grey product-status">
+                  Out of stock
+                </span>
               )}
               {product.discount ? (
-                <span className='sale-product bagde bagde-red'>-{product.discount}%</span>
+                <span className="sale-product bagde bagde-red">
+                  -{product.discount}%
+                </span>
               ) : null}
             </div>
             <div>
-              <h4 className='product-name'>{product.name}</h4>
+              <h4 className="product-name">{product.name}</h4>
             </div>
-            <div className='product-price d-flex justify-between'>
+            <div className="product-price d-flex justify-between">
               {product.discount ? (
-                <span className='product-price-sale'>${(product.finalPrice)?.toFixed(2)}</span>
+                <span className="product-price-sale">
+                  ${product.finalPrice?.toFixed(2)}
+                </span>
               ) : null}
-              <span className='product-price-base'>${(product.price)?.toFixed(2)}</span>
+              <span className="product-price-base">
+                ${product.price?.toFixed(2)}
+              </span>
             </div>
           </a>
         </div>

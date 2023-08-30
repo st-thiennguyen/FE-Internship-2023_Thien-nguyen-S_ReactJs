@@ -10,7 +10,6 @@ interface HeaderProps {
 }
 
 export const Header = (props: HeaderProps) => {
-  
   const location = useLocation();
   const [scrolling, setScrolling] = useState(location.pathname !== '/' ? true : false);
 
@@ -36,7 +35,7 @@ export const Header = (props: HeaderProps) => {
           <div className='header-desktop d-flex justify-between'>
             <div className='header-logo'>
               <h1 className='logo-heading'>
-                <Link to={'/'}  className='header-logo-link'>
+                <Link to={'/'} className='header-logo-link'>
                   <img src={logo} alt='Logo E shop' className='logo-img' />
                 </Link>
               </h1>

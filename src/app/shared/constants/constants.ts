@@ -1,9 +1,11 @@
-enum PRODUCT_STATUS {
+enum ProductStatus {
   AVAILABLE = 'Available',
   OUT_OF_STOCK = 'Out of Stock'
 }
-enum GLOBAL_KEY {
+enum StorageKey {
   CART = 'cart'
 }
 
-export { PRODUCT_STATUS, GLOBAL_KEY };
+export {
+  ProductStatus, StorageKey
+};

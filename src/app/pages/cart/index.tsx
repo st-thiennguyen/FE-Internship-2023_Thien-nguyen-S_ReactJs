@@ -1,6 +1,6 @@
-import CartList from './components/CartList';
-import CartHeader from './components/CartHeader';
 import { CartItemModel } from '../../models';
+import CartHeader from './components/CartHeader';
+import CartList from './components/CartList';
 
 interface CartComponentProps {
   cartList: CartItemModel[];
