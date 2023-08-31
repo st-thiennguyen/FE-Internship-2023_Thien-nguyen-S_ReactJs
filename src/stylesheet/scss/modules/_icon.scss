@@ -1,0 +1,72 @@
+.icon {
+  display: inline-block;
+  width: $icon-size;
+  height: $icon-size;
+  background-repeat: no-repeat;
+  background-position: center;
+  &-small {
+    width: $icon-size-sm;
+    height: $icon-size-sm;
+  }
+  &-search {
+    background-image: map-get($icons, search-b);
+  }
+  &-truck-yellow {
+    margin-right: 10px;
+    background-image: map-get($icons, truck-y);
+  }
+  &-smile-yellow {
+    margin-right: 10px;
+    background-image: map-get($icons, smile-y);
+  }
+  &-dollar-yellow {
+    margin-right: 10px;
+    background-image: map-get($icons, guarantee-y);
+  }
+
+  &-cart-mb {
+    background-image: map-get($icons, cart-b);
+  }
+
+  &-user-mb {
+    background-image: map-get($icons, user-b);
+  }
+
+  &-menu-mb {
+    background-image: map-get($icons, menu-mb);
+  }
+
+  &-truck-service {
+    background-image: map-get($icons, truck-b);
+  }
+
+  &-payment-service {
+    background-image: map-get($icons, payment-b);
+  }
+
+  &-guarantee-service {
+    background-image: map-get($icons, guarantee-b);
+  }
+
+  &-quality-service {
+    background-image: map-get($icons, quality-b);
+  }
+  &-trash {
+    background-image: map-get($icons, trash-ouline);
+  }
+}
+
+.service:hover {
+  .icon-truck-service {
+    background-image: map-get($icons, truck-y);
+  }
+  .icon-payment-service {
+    background-image: map-get($icons, payment-y);
+  }
+  .icon-guarantee-service {
+    background-image: map-get($icons, guarantee-y);
+  }
+  .icon-quality-service {
+    background-image: map-get($icons, quality-y);
+  }
+}

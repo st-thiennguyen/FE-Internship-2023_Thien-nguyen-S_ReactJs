@@ -1,0 +1,353 @@
+/* BANNER SECTION */
+.section-banner {
+  height: 100vh;
+  min-height: 800px;
+  background-image: map-get($image, banner-bg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 0;
+  &::after {
+    content: "";
+    @include position(0, 0, 0, 0, absolute);
+    z-index: 0;
+    background-color: map-get($color, black);
+    opacity: $opacity-base;
+  }
+  .banner {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    &-content {
+      z-index: 1;
+      width: 40%;
+      @include position(
+        50%,
+        null,
+        null,
+        calc((100vw - 1152px) / 2 + 96px),
+        absolute
+      );
+      transform: translateY(-50%);
+      color: map-get($color, white);
+      margin: 0 auto;
+    }
+
+    &-title {
+      font-size: 72px;
+      font-weight: map-get($font-weight, bold);
+    }
+    &-action-txt {
+      color: map-get($color, white);
+      font-size: map-get($font-sizes, xxl);
+      font-weight: map-get($font-weight, bold);
+      text-decoration-line: underline;
+      text-transform: uppercase;
+      margin-left: 20px;
+    }
+  }
+}
+
+.banner-statitics {
+  @include position(null, null, 0, 0, absolute);
+  z-index: 1;
+  background-color: map-get($color, white);
+  margin: 0 auto;
+  padding: 14px 0 14px calc((100vw - 1152px) / 2 + 96px);
+  border-radius: 0 70px 0 0;
+  border-bottom: 1px solid map-get($color, greyLight);
+  .statistic-item {
+    align-items: start;
+    padding: 24px;
+    &:first-child {
+      align-items: start;
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 88px;
+    }
+    .statistic {
+      &-title {
+        font-size: map-get($font-sizes, sm);
+        font-weight: map-get($font-weight, bold);
+      }
+
+      &-content {
+        max-width: 200px;
+      }
+
+      &-description {
+        font-size: map-get($font-sizes, xs);
+        color: map-get($color, grey);
+      }
+    }
+  }
+}
+
+.category-item {
+  .category {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-content {
+      @include position(0, 0, 0, 0, absolute);
+      z-index: 2;
+      padding: 50px 40px;
+    }
+    &-title {
+      margin-bottom: 15px;
+      color: map-get($color, white);
+      font-size: map-get($font-sizes, xxl);
+      font-weight: 400;
+    }
+
+    &::after {
+      @include position(0, 0, 0, 0, absolute);
+      content: "";
+      background-color: map-get($color, black);
+      opacity: 0.5;
+    }
+  }
+}
+
+/* CATEGORY */
+
+/* PRODUCT */
+.product {
+  &-image {
+    position: relative;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &-cart {
+    position: absolute;
+    @include position(0, 0, 0, 0, absolute);
+    transition: background-color 1s ease;
+    .btn-cart-add {
+      opacity: 0;
+      transition: all 1s ease;
+    }
+    .disabled {
+      background-color: map-get($color, greyDark);
+      color: map-get($color, white);
+      cursor: default;
+    }
+  }
+  &:hover &-cart {
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    .btn-cart-add {
+      opacity: 1;
+    }
+  }
+  &-name {
+    color: map-get($color, dark);
+    font-size: map-get($font-sizes, md);
+    font-weight: 300;
+  }
+  .sale-product {
+    @include position(24px, null, null, 18px, absolute);
+  }
+  .product-status {
+    @include position(24px, 18px, null, null, absolute);
+  }
+  &-price {
+    font-size: map-get($font-sizes, xl);
+  }
+  &-price-sale {
+    color: map-get($color, red);
+  }
+
+  &-price-base {
+    color: map-get($color, dark);
+  }
+
+  .discounted &-price-base {
+    color: map-get($color, greyDark);
+  }
+}
+
+/* Services */
+.section-services {
+  padding: 64px 0;
+  background-color: map-get($color, greyLight);
+  .service {
+    &-title {
+      color: map-get($color, dark);
+      font-size: map-get($font-sizes, md);
+      margin-top: 46px;
+      margin-bottom: 16px;
+    }
+    &-subtitle {
+      color: map-get($color, grey);
+      font-size: map-get($font-sizes, sm);
+    }
+    &-image {
+      width: 68px;
+      height: 68px;
+      background-color: map-get($color, white);
+      border-radius: 10px;
+    }
+    &:hover .service-title,
+    &:hover .service-subtitle {
+      color: map-get($color, primary);
+    }
+  }
+}
+.section-recommend {
+  padding: 96px 0;
+}
+
+/* Contact */
+.section-contact {
+  background-image: map-get($image, footer-bg);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+
+  &::after {
+    content: "";
+    background-color: map-get($color, black);
+    opacity: $opacity-base;
+    @include position(0, 0, 0, 0, absolute);
+    z-index: 0;
+  }
+
+  .contact-wrapper {
+    position: relative;
+    padding: 37px 0;
+    z-index: 2;
+
+    .contact-description {
+      color: map-get($color, white);
+      font-size: map-get($font-sizes, xxl);
+    }
+
+    .contact-form {
+      text-align: end;
+      .form-contact {
+        float: right;
+      }
+    }
+
+    .form-contact-input {
+      min-width: 350px;
+      padding: 14px 24px;
+      border-radius: 60px;
+      outline: none;
+      border: none;
+      margin-right: 40px;
+    }
+  }
+}
+
+.btn-subcribe {
+  color: map-get($color, dark);
+}
+
+@media screen and (max-width: 768px) {
+  .section-banner {
+    min-height: 740px;
+    background-image: map-get($image, banner-mb-bg);
+    .banner {
+      &-content {
+        left: calc((100vw - (100vw - 48px)) / 2);
+        width: 80%;
+      }
+      &-title {
+        font-size: 48px;
+      }
+      &-statitics {
+        display: none;
+      }
+    }
+  }
+
+  .category-item {
+    .category {
+      &-content {
+        padding: 16px;
+      }
+      &-title {
+        font-size: map-get($font-sizes, sm);
+        margin-bottom: 11px;
+      }
+    }
+  }
+
+  .section-bestseller,
+  .section-recommend {
+    padding: 40px 0;
+  }
+
+  .section-services {
+    padding: 24px 0;
+  }
+
+  .product {
+    &-name {
+      font-size: map-get($font-sizes, xs);
+    }
+    &-price {
+      font-size: map-get($font-sizes, xxs);
+    }
+  }
+
+  .service {
+    &-title {
+      margin: 8px 0 !important;
+    }
+    &-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-content {
+      max-width: calc((100vw - 48px) - 84px);
+    }
+  }
+
+  .section-contact {
+    background-image: map-get($image, footer-mb-bg);
+
+    .contact-wrapper {
+      position: relative;
+      padding: 37px 0;
+      z-index: 2;
+
+      .contact-description {
+        .contact-txt {
+          max-width: 80%;
+          margin-bottom: 24px;
+        }
+      }
+
+      .contact-description {
+        color: map-get($color, white);
+        font-size: map-get($font-sizes, xxl);
+      }
+
+      .contact-form {
+        text-align: end;
+        .form-contact {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      .form-contact-input {
+        min-width: calc(100vw - 48px);
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.section {
+  padding: 48px 0;
+}
+
+.section-title {
+  color: map-get($color, dark);
+  font-size: 32px;
+  font-weight: map-get($font-weight, light);
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: map-get($breakpoints, md)) {
+  .section {
+    padding: 20px 0;
+  }
+
+  .section-title {
+    font-size: map-get($font-sizes, lg);
+    margin-bottom: 16px;
+  }
+}
