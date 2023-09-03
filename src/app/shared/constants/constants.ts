@@ -3,7 +3,8 @@ enum ProductStatus {
   OUT_OF_STOCK = 'Out of Stock'
 }
 enum StorageKey {
-  CART = 'cart'
+  CART = 'cart',
+  PRODUCT = 'products'
 }
 
 export {

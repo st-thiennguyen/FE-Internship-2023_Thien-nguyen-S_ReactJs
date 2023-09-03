@@ -1,20 +1,51 @@
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { CartItemModel } from '../../../models';
+import { removeItemCart, updateQuantityItemCart } from '../../../redux/actions';
 
 interface CartItemComponentProps {
   cartItem: CartItemModel;
-  handleRemoveItem: Function;
-  handleChangeQuantity: Function;
 }
 
 const CartItem = (props: CartItemComponentProps) => {
   const cartItem: CartItemModel = props.cartItem;
-  const handleDeleteItem = (idProduct: number) => {
-    props.handleRemoveItem(idProduct);
+
+  const [isEditable, setEditable] = useState(false);
+
+  const quantityRef = useRef<HTMLInputElement>(null);
+
+  const dispatch = useDispatch();
+  const handleDeleteItem = () => {
+    dispatch(removeItemCart(cartItem.id));
   };
 
-  const updateQuantity = (idProduct: number, quantity: number) => {
-    props.handleChangeQuantity(idProduct, quantity);
+  const handleUpdateQuantity = (quantity: number) => {
+    dispatch(updateQuantityItemCart(cartItem.id, quantity));
   };
+
+  const doubleClickToQuantity = () => {
+    setEditable(true);
+  };
+
+  const blurToQuantityInput = () => {
+    const quantityInput: number = Number(quantityRef.current?.value);
+    if (quantityInput > 0) {
+      dispatch(updateQuantityItemCart(cartItem.id, quantityInput));
+    }
+    setEditable(false);
+  };
+
+  const enterToQuantityInput = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      const quantityInput: number = Number(quantityRef.current?.value);
+      if (quantityInput > 0) {
+        dispatch(updateQuantityItemCart(cartItem.id, quantityInput));
+      }
+      setEditable(false);
+    }
+  };
+
   return (
     <>
       <tr className="cart-item">
@@ -32,32 +63,42 @@ const CartItem = (props: CartItemComponentProps) => {
         </td>
         <td className="product-price">${cartItem.finalPrice?.toFixed(2)}</td>
         <td className="product-quantity">
-          <button
-            data-index="/"
-            className="btn-cart-minus"
-            onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}
-          >
-            -
-          </button>
-          <span id="prod-quantity-cartItem.id" className="quantity">
-            {cartItem.quantity}
-          </span>
-          <button
-            data-index="$cartItem.id"
-            className="btn-cart-plus"
-            onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
-          >
-            +
-          </button>
+          {isEditable ? (
+            <input
+              ref={quantityRef}
+              className="quantity"
+              type="number"
+              autoFocus
+              onBlur={blurToQuantityInput}
+              onKeyDown={enterToQuantityInput}
+            />
+          ) : (
+            <>
+              <button
+                data-index="/"
+                className="btn-cart-minus"
+                onClick={() => handleUpdateQuantity(cartItem.quantity - 1)}
+              >
+                -
+              </button>
+              <span className="quantity" onDoubleClick={doubleClickToQuantity}>
+                {cartItem.quantity}
+              </span>
+              <button
+                data-index="$cartItem.id"
+                className="btn-cart-plus"
+                onClick={() => handleUpdateQuantity(cartItem.quantity + 1)}
+              >
+                +
+              </button>
+            </>
+          )}
         </td>
         <td id="product-subtotal-cartItem.id" className="product-subtotal">
           ${cartItem.subTotal?.toFixed(2)}
         </td>
         <td className="product-remove">
-          <button
-            className="product-remove-link"
-            onClick={() => handleDeleteItem(cartItem.id)}
-          >
+          <button className="product-remove-link" onClick={handleDeleteItem}>
             <i className="icon icon-small icon-trash"></i>
           </button>
         </td>
