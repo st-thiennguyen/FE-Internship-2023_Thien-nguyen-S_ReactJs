@@ -75,7 +75,6 @@ const CartItem = (props: CartItemComponentProps) => {
           ) : (
             <>
               <button
-                data-index="/"
                 className="btn-cart-minus"
                 onClick={() => handleUpdateQuantity(cartItem.quantity - 1)}
               >
@@ -85,7 +84,6 @@ const CartItem = (props: CartItemComponentProps) => {
                 {cartItem.quantity}
               </span>
               <button
-                data-index="$cartItem.id"
                 className="btn-cart-plus"
                 onClick={() => handleUpdateQuantity(cartItem.quantity + 1)}
               >
@@ -94,9 +92,7 @@ const CartItem = (props: CartItemComponentProps) => {
             </>
           )}
         </td>
-        <td id="product-subtotal-cartItem.id" className="product-subtotal">
-          ${cartItem.subTotal?.toFixed(2)}
-        </td>
+        <td className="product-subtotal">${cartItem.subTotal?.toFixed(2)}</td>
         <td className="product-remove">
           <button className="product-remove-link" onClick={handleDeleteItem}>
             <i className="icon icon-small icon-trash"></i>

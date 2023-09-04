@@ -7,20 +7,26 @@ import icCart from '../../../assets/icons/icon-cart.svg';
 import icSearch from '../../../assets/icons/icon-search.svg';
 import icUser from '../../../assets/icons/icon-user.svg';
 import { CartItemModel } from '../../models';
+import { StorageKey } from '../constants';
+import { saveDataToStorage } from '../utils';
 
 export const Header = () => {
   const location = useLocation();
 
-  const cartCount = useSelector((state: any) =>
-    state.cart.items.reduce(
-      (total: number, item: CartItemModel) => (total += item.quantity),
-      0,
-    ),
+  const cartList = useSelector((state: any) => state.cart.items);
+
+  const cartCount = cartList.reduce(
+    (total: number, item: CartItemModel) => (total += item.quantity),
+    0,
   );
 
   const [scrolling, setScrolling] = useState(
     location.pathname !== '/' ? true : false,
   );
+
+  useEffect(() => {
+    saveDataToStorage(StorageKey.CART, cartList);
+  }, [cartList]);
 
   const handleScroll = () => {
     if (window.scrollY > 0 || location.pathname !== '/') {
@@ -81,10 +87,7 @@ export const Header = () => {
                 <li className="header-cart icon-item">
                   <Link className="icon-link" to={'/cart'}>
                     <img src={icCart} alt="Icon of cart" />
-                    <span
-                      id="cart-count"
-                      className="cart-count d-flex justify-center item-center"
-                    >
+                    <span className="cart-count d-flex justify-center item-center">
                       {cartCount}
                     </span>
                   </Link>

@@ -3,13 +3,13 @@ import { StorageKey } from '../../shared/constants';
 import { getDataFromStorage } from '../../shared/utils';
 import * as ACTIONS_TYPE from '../type';
 
-interface productStateProps {
+type productStateProps = {
   data: ProductModel[];
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
   message: string;
-}
+};
 
 const initialState: productStateProps = {
   data: getDataFromStorage(StorageKey.PRODUCT),

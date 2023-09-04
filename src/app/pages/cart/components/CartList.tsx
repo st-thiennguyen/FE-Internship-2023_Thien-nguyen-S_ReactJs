@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 import cartEmptyAnim from '../../../../assets/animation/cart-emty.json';
 import { CartItemModel } from '../../../models';
-import { StorageKey } from '../../../shared/constants';
-import { saveDataToStorage } from '../../../shared/utils';
 import CartItem from './CartItem';
 
 const CartList = () => {
@@ -21,10 +19,6 @@ const CartList = () => {
   );
 
   const lengthCart = cartList.length > 0;
-
-  useEffect(() => {
-    saveDataToStorage(StorageKey.CART, cartList);
-  }, [cartList]);
 
   useEffect(() => {
     const animation = lottie.loadAnimation({
@@ -42,7 +36,7 @@ const CartList = () => {
         <div className="container">
           <div id="shop-cart" className="cart-wrapper">
             {cartList?.length > 0 ? (
-              <table className="cart-table" id="cart-list">
+              <table className="cart-table">
                 <thead>
                   <tr className="table-header">
                     <th>Image</th>

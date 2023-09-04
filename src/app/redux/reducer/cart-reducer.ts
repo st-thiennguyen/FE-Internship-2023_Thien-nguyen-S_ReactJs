@@ -3,7 +3,7 @@ import { StorageKey } from '../../shared/constants';
 import { getDataFromStorage } from '../../shared/utils';
 import * as ACTIONS_TYPE from '../type';
 
-export interface CartStateProps {
+type CartStateProps = {
   items: CartItemModel[];
 }
 
