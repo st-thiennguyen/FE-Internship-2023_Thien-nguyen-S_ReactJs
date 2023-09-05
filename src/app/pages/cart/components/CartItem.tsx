@@ -65,6 +65,7 @@ const CartItem = (props: CartItemComponentProps) => {
               ref={quantityRef}
               className="quantity"
               type="number"
+              defaultValue={cartItem.quantity}
               autoFocus
               onBlur={blurToQuantityInput}
               onKeyDown={enterToQuantityInput}
