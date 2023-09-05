@@ -12,7 +12,7 @@ type productStateProps = {
 };
 
 const initialState: productStateProps = {
-  data: getDataFromStorage(StorageKey.PRODUCT),
+  data: [],
   isLoading: false,
   isSuccess: false,
   isError: false,

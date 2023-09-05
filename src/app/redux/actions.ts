@@ -21,7 +21,7 @@ export const getDataSuccess = (data: ProductModel[]) => {
 
 export const getDataFailure = (message: string) => {
   return {
-    type: ACTION_TYPES.GET_DATA_PRODUCT_SUCCESS,
+    type: ACTION_TYPES.GET_DATA_PRODUCT_FAILURE,
     payload: message
   };
 };
@@ -33,7 +33,7 @@ export const fetchDataProduct =
 
     const rndInt = Math.floor(Math.random() * 6);
 
-    if (rndInt < 6) {
+    if (rndInt < 3) {
       dispatch(getDataFailure(`Loi tu che`));
       return;
     }

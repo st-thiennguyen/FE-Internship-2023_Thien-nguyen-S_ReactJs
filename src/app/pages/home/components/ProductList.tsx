@@ -12,7 +12,6 @@ interface ProductListComponentProps {
 }
 
 const ProductList = (props: ProductListComponentProps) => {
-  const { dataProducts } = props;
   const isLoading = useSelector((state: any) => state.products.isLoading);
 
   const isError = useSelector((state: any) => state.products.isError);
@@ -31,21 +30,24 @@ const ProductList = (props: ProductListComponentProps) => {
               SHOW MORE
             </a>
           </div>
-
-          {isError && <ProductListError errorMessage={errorMessage} />}
-
-          <div id="product-bestseller" className="product-list">
-            <ul className="row">
-              {isLoading
-                ? isLoadingData.map((e, index) => {
-                    return <ProductItemSkeleton key={index} />;
-                  })
-                : dataProducts.length > 0 &&
-                  dataProducts.map((product: ProductModel) => {
-                    return <ProductItem product={product} key={product.id} />;
-                  })}
-            </ul>
-          </div>
+          {isError ? (
+            <ProductListError
+              errorMessage={errorMessage}
+              isLoading={isLoading}
+            />
+          ) : (
+            <div id="product-bestseller" className="product-list">
+              <ul className="row">
+                {isLoading
+                  ? isLoadingData.map((e, index) => {
+                      return <ProductItemSkeleton key={index} />;
+                    })
+                  : props.dataProducts!.map((product: ProductModel) => {
+                      return <ProductItem product={product} key={product.id} />;
+                    })}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
     </>

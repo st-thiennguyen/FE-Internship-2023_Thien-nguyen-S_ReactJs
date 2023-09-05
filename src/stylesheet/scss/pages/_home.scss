@@ -197,6 +197,12 @@
 .error-message {
   margin-bottom: 15px;
 }
+
+.btn-refresh.disabled {
+  background-color: #333;
+  opacity: 0.5;
+  cursor: progress;
+}
 /* Services */
 .section-services {
   padding: 64px 0;
