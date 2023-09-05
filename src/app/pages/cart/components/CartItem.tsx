@@ -26,7 +26,7 @@ const CartItem = (props: CartItemComponentProps) => {
   };
 
   const blurToQuantityInput = () => {
-    const quantityInput: number = Number(quantityRef.current?.value);
+    const quantityInput: number = parseInt(quantityRef.current!.value);
     if (quantityInput > 0) {
       dispatch(updateQuantityItemCart(cartItem.id, quantityInput));
     }
@@ -35,7 +35,7 @@ const CartItem = (props: CartItemComponentProps) => {
 
   const enterToQuantityInput = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      const quantityInput: number = Number(quantityRef.current?.value);
+      const quantityInput: number = parseInt(quantityRef.current!.value);
       if (quantityInput > 0) {
         dispatch(updateQuantityItemCart(cartItem.id, quantityInput));
       }
@@ -95,7 +95,10 @@ const CartItem = (props: CartItemComponentProps) => {
         </td>
         <td className="product-subtotal">${cartItem.subTotal?.toFixed(2)}</td>
         <td className="product-remove">
-          <button className="product-remove-link" onClick={handleDeleteItem}>
+          <button
+            className="btn product-remove-link"
+            onClick={handleDeleteItem}
+          >
             <i className="icon icon-small icon-trash"></i>
           </button>
         </td>

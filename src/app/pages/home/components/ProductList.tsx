@@ -1,21 +1,14 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 import { ProductModel } from '../../../models';
-import { StorageKey } from '../../../shared/constants';
-import { saveDataToStorage } from '../../../shared/utils';
 import ProductItem from './ProductItem';
 
 interface ProductListComponentProps {
   title: string;
+  dataProducts: ProductModel[];
 }
 
 const ProductList = (props: ProductListComponentProps) => {
-  const dataProducts = useSelector((state: any) => state.products.data);
-  useEffect(() => {
-    saveDataToStorage(StorageKey.PRODUCT, dataProducts);
-  }, [dataProducts]);
-
   return (
     <>
       <section className="section section-bestseller">
@@ -28,8 +21,8 @@ const ProductList = (props: ProductListComponentProps) => {
           </div>
           <div id="product-bestseller" className="product-list">
             <ul className="row">
-              {dataProducts &&
-                dataProducts?.map((product: ProductModel) => {
+              {props.dataProducts &&
+                props.dataProducts?.map((product: ProductModel) => {
                   return <ProductItem product={product} key={product.id} />;
                 })}
             </ul>
