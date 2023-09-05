@@ -25,21 +25,23 @@ const CartItem = (props: CartItemComponentProps) => {
     dispatch(updateQuantityItemCart(cartItem.id, quantity));
   };
 
-  const blurToQuantityInput = () => {
+  const handleUpdateQuantityInput = () => {
     const quantityInput: number = parseInt(quantityRef.current!.value);
-    if (quantityInput > 0) {
+    if (quantityInput > 0 && quantityInput < 100) {
       dispatch(updateQuantityItemCart(cartItem.id, quantityInput));
+    } else {
+      alert('Quantity must be besthan 0 and smaller than 100');
     }
     setEditable(false);
   };
 
+  const blurToQuantityInput = () => {
+    handleUpdateQuantityInput();
+  };
+
   const enterToQuantityInput = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      const quantityInput: number = parseInt(quantityRef.current!.value);
-      if (quantityInput > 0) {
-        dispatch(updateQuantityItemCart(cartItem.id, quantityInput));
-      }
-      setEditable(false);
+      handleUpdateQuantityInput();
     }
   };
 

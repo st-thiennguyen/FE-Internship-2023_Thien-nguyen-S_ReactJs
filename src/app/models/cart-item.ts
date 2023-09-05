@@ -1,4 +1,4 @@
-import { IProduct, ProductModel } from '../product/product';
+import { IProduct, ProductModel } from './product';
 
 interface ICartItem extends Omit<IProduct, 'status'> {
   quantity: number;

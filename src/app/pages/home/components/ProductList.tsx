@@ -30,24 +30,24 @@ const ProductList = (props: ProductListComponentProps) => {
               SHOW MORE
             </a>
           </div>
-          {isError ? (
-            <ProductListError
-              errorMessage={errorMessage}
-              isLoading={isLoading}
-            />
-          ) : (
-            <div id="product-bestseller" className="product-list">
-              <ul className="row">
-                {isLoading
-                  ? isLoadingData.map((e, index) => {
-                      return <ProductItemSkeleton key={index} />;
-                    })
-                  : props.dataProducts!.map((product: ProductModel) => {
-                      return <ProductItem product={product} key={product.id} />;
-                    })}
-              </ul>
-            </div>
-          )}
+
+          <div id="product-bestseller" className="product-list">
+            <ul className="row">
+              {isLoading
+                ? isLoadingData.map((e, index) => {
+                    return <ProductItemSkeleton key={index} />;
+                  })
+                : props.dataProducts!.map((product: ProductModel) => {
+                    return <ProductItem product={product} key={product.id} />;
+                  })}
+              {!isLoading && isError && (
+                <ProductListError
+                  errorMessage={errorMessage}
+                  isLoading={isLoading}
+                />
+              )}
+            </ul>
+          </div>
         </div>
       </section>
     </>

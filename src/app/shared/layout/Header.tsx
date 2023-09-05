@@ -20,9 +20,7 @@ export const Header = () => {
     0,
   );
 
-  const [scrolling, setScrolling] = useState(
-    location.pathname !== '/' ? true : false,
-  );
+  const [scrolling, setScrolling] = useState(location.pathname !== '/');
 
   useEffect(() => {
     saveDataToStorage(StorageKey.CART, cartList);

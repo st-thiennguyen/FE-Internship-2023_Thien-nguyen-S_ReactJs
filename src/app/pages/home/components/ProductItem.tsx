@@ -10,7 +10,7 @@ interface ProductItemProps {
 }
 
 const ProductItem = (props: ProductItemProps) => {
-  const product = props.product;
+  const { product } = props;
 
   const dispatch = useDispatch();
 

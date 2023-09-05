@@ -1,5 +1,5 @@
 import lottie from 'lottie-web';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -12,10 +12,12 @@ const CartList = () => {
 
   const cartList = useSelector((state: any) => state.cart.items);
 
-  const cartTotal = cartList.reduce(
-    (total: number, item: CartItemModel) => (total += item.subTotal),
-    0,
-  );
+  const cartTotal = useMemo(() => {
+    return cartList.reduce(
+      (total: number, item: CartItemModel) => (total += item.subTotal),
+      0,
+    );
+  }, [cartList]);
 
   const lengthCart = cartList.length > 0;
 

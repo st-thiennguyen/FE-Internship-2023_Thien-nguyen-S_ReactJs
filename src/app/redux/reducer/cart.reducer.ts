@@ -1,17 +1,19 @@
 import { CartItemModel } from '../../models';
 import { StorageKey } from '../../shared/constants';
 import { getDataFromStorage } from '../../shared/utils';
+import { RootAction } from '../store';
 import * as ACTIONS_TYPE from '../type';
 
 type CartStateProps = {
   items: CartItemModel[];
 }
 
+
 const initialState: CartStateProps = {
   items: getDataFromStorage(StorageKey.CART),
 };
 
-export const cartReducer = (state = initialState, action: any) => {
+export const cartReducer = (state = initialState, action: RootAction) => {
   switch (action.type) {
     case ACTIONS_TYPE.ADD_PRODUCT_TO_CART:
       const checkItem = state.items.find(

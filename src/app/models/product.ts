@@ -1,4 +1,4 @@
-import { ProductStatus } from '../../shared/constants';
+import { ProductStatus } from '../shared/constants';
 
 export interface IProduct {
   id: number;

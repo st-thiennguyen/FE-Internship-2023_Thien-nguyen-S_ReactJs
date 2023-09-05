@@ -2,7 +2,7 @@ import prd1 from '../../../assets/images/product-01.png';
 import prd2 from '../../../assets/images/product-02.png';
 import prd3 from '../../../assets/images/product-03.png';
 import prd4 from '../../../assets/images/product-04.png';
-import { IProduct } from '../../models/product/product';
+import { IProduct } from '../../models/product';
 import { ProductStatus } from '../constants/constants';
 
 export const data: IProduct[] = [

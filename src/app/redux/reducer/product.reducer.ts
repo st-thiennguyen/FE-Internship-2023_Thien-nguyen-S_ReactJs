@@ -1,6 +1,5 @@
 import { ProductModel } from '../../models';
-import { StorageKey } from '../../shared/constants';
-import { getDataFromStorage } from '../../shared/utils';
+import { RootAction } from '../store';
 import * as ACTIONS_TYPE from '../type';
 
 type productStateProps = {
@@ -11,6 +10,8 @@ type productStateProps = {
   message: string;
 };
 
+
+
 const initialState: productStateProps = {
   data: [],
   isLoading: false,
@@ -19,13 +20,14 @@ const initialState: productStateProps = {
   message: '',
 };
 
-export const productReducer = (state = initialState, action: any) => {
+export const productReducer = (state = initialState, action: RootAction) => {
   switch (action.type) {
     case ACTIONS_TYPE.GET_DATA_PRODUCT_START:
       return {
         ...state,
         isLoading: true,
-        message: null
+        isError: false,
+        message: null,
       };
     case ACTIONS_TYPE.GET_DATA_PRODUCT_SUCCESS:
       return {

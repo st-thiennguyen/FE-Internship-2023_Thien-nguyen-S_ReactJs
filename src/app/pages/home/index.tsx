@@ -11,11 +11,11 @@ import Service from './components/Service';
 const Home = () => {
   const dispatch = useDispatch();
 
+  const dataProducts = useSelector((state: any) => state.products.data);
+
   useEffect(() => {
     dispatch(fetchDataProduct() as any);
   }, [dispatch]);
-
-  const dataProducts = useSelector((state: any) => state.products.data);
 
   return (
     <>
