@@ -43,7 +43,7 @@ export const cartReducer = (state = initialState, action: any) => {
         (item) => item.id === action.payload.id,
       );
       if (itemCart) {
-        if (itemCart.quantity + action.payload.quantity < 1 || itemCart.quantity === 1) {
+        if (action.payload.quantity < 1) {
           cart = cart.filter((item) => item.id !== itemCart?.id);
         } else {
           cart = cart.map((item) => {
