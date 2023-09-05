@@ -1,15 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { ProductModel } from '../../../models';
 import ProductItem from './ProductItem';
+import ProductItemSkeleton from './ProductItemSkeleton';
+import ProductListError from './ProductListError';
 
 interface ProductListComponentProps {
   title: string;
-  data: ProductModel[];
-  handleAddToCart: Function;
+  dataProducts: ProductModel[];
 }
 
 const ProductList = (props: ProductListComponentProps) => {
+  const isLoading = useSelector((state: any) => state.products.isLoading);
+
+  const isError = useSelector((state: any) => state.products.isError);
+
+  const errorMessage = useSelector((state: any) => state.products.message);
+
+  const isLoadingData = [{}, {}, {}, {}];
+
   return (
     <>
       <section className="section section-bestseller">
@@ -20,18 +30,22 @@ const ProductList = (props: ProductListComponentProps) => {
               SHOW MORE
             </a>
           </div>
+
           <div id="product-bestseller" className="product-list">
             <ul className="row">
-              {props.data &&
-                props.data?.map((product: ProductModel) => {
-                  return (
-                    <ProductItem
-                      product={product}
-                      key={product.id}
-                      handleAddToCart={props.handleAddToCart}
-                    />
-                  );
-                })}
+              {isLoading
+                ? isLoadingData.map((e, index) => {
+                    return <ProductItemSkeleton key={index} />;
+                  })
+                : props.dataProducts!.map((product: ProductModel) => {
+                    return <ProductItem product={product} key={product.id} />;
+                  })}
+              {!isLoading && isError && (
+                <ProductListError
+                  errorMessage={errorMessage}
+                  isLoading={isLoading}
+                />
+              )}
             </ul>
           </div>
         </div>

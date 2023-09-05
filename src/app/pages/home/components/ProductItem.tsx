@@ -1,21 +1,25 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { CartItemModel, ProductModel } from '../../../models';
+import { addItemCart } from '../../../redux/actions';
 import { ProductStatus } from '../../../shared/constants/constants';
 
 interface ProductItemProps {
   product: ProductModel;
-  handleAddToCart: Function;
 }
 
 const ProductItem = (props: ProductItemProps) => {
-  const product: ProductModel = props.product;
+  const { product } = props;
 
-  const addToCart = (e: React.MouseEvent) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     const cartItem = new CartItemModel(product, 1);
-    props.handleAddToCart(cartItem);
+    dispatch(addItemCart(cartItem));
   };
+
   return (
     <>
       <li className="col col-3 col-sm-6">
@@ -38,7 +42,7 @@ const ProductItem = (props: ProductItemProps) => {
                       ? 'disabled'
                       : ''
                   }`}
-                  onClick={addToCart}
+                  onClick={handleAddToCart}
                 >
                   Add to cart
                 </button>

@@ -1,40 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { ProductModel } from '../../models';
+import { fetchDataProduct } from '../../redux/actions';
 import { Contact } from '../../shared/components';
-import { data } from '../../shared/data/index';
 import Banner from './components/Banner';
 import Category from './components/Category';
 import ProductList from './components/ProductList';
 import Service from './components/Service';
 
-interface HomeComponentProps {
-  handleAddToCart: Function;
-}
+const Home = () => {
+  const dispatch = useDispatch();
 
-const Home = (props: HomeComponentProps) => {
-  const [productList, setProductList] = useState<ProductModel[]>([]);
+  const dataProducts = useSelector((state: any) => state.products.data);
 
   useEffect(() => {
-    const dataProduct = data.map((product) => new ProductModel(product));
-    setProductList([...dataProduct]);
-  }, []);
+    dispatch(fetchDataProduct() as any);
+  }, [dispatch]);
 
   return (
     <>
       <Banner />
       <Category />
-      <ProductList
-        title="Selected just for you"
-        data={productList}
-        handleAddToCart={props.handleAddToCart}
-      />
+      <ProductList title="Selected just for you" dataProducts={dataProducts} />
       <Service />
-      <ProductList
-        title="Product in today"
-        data={productList}
-        handleAddToCart={props.handleAddToCart}
-      />
+      <ProductList title="Product in today" dataProducts={dataProducts} />
       <Contact />
     </>
   );

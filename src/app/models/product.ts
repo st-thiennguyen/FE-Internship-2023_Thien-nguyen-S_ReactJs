@@ -1,4 +1,4 @@
-import { ProductStatus } from '../../shared/constants';
+import { ProductStatus } from '../shared/constants';
 
 export interface IProduct {
   id: number;
@@ -6,7 +6,7 @@ export interface IProduct {
   image: string;
   price: number;
   discount?: number;
-  status: ProductStatus;
+  status?: ProductStatus;
 }
 
 export class ProductModel implements IProduct {
@@ -14,15 +14,15 @@ export class ProductModel implements IProduct {
   name: string;
   image: string;
   price: number;
-  discount: number;
-  status: ProductStatus;
+  discount?: number;
+  status?: ProductStatus;
   finalPrice: number;
   constructor({ id, name, image, price, discount, status }: IProduct) {
     this.id = id;
     this.name = name || '';
-    this.image = image || '';
+    this.image = image;
     this.price = price || 0;
-    this.discount = discount ?? 0;
+    this.discount = discount || 0;
     this.status = status || ProductStatus.AVAILABLE;
     this.finalPrice = this.price - (this.price / 100) * this.discount;
   }

@@ -69,6 +69,13 @@
         }
         .quantity {
           margin: 0 10px;
+          cursor: grab;
+        }
+        input[type='number'].quantity {
+          width: 70px;
+          padding: 5px;
+          border: 1px solid #f2f2f2;
+          outline: none;
         }
       }
     }
