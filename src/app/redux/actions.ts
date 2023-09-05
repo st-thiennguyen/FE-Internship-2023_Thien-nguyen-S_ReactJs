@@ -43,4 +43,3 @@ export const updateQuantityItemCart = (id: number, quantity: number) => {
     payload: { id, quantity }
   }
 }
-

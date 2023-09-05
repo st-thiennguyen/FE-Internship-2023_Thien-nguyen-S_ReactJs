@@ -16,16 +16,13 @@ const CartItem = (props: CartItemComponentProps) => {
   const quantityRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
+
   const handleDeleteItem = () => {
     dispatch(removeItemCart(cartItem.id));
   };
 
   const handleUpdateQuantity = (quantity: number) => {
     dispatch(updateQuantityItemCart(cartItem.id, quantity));
-  };
-
-  const doubleClickToQuantity = () => {
-    setEditable(true);
   };
 
   const blurToQuantityInput = () => {
@@ -80,7 +77,10 @@ const CartItem = (props: CartItemComponentProps) => {
               >
                 -
               </button>
-              <span className="quantity" onDoubleClick={doubleClickToQuantity}>
+              <span
+                className="quantity"
+                onDoubleClick={() => setEditable(true)}
+              >
                 {cartItem.quantity}
               </span>
               <button
