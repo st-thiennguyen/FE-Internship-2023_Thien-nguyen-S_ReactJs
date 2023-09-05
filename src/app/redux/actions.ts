@@ -28,17 +28,27 @@ export const getDataFailure = (message: string) => {
 
 
 export const fetchDataProduct =
-  (): RootThunk => async (dispatch: Dispatch<RootAction>) => {
-    try {
-      dispatch(getDataStart());
-      const res = await fetch('data.json');
-      const data = await res.json();
-      const products = data.map((item: ProductModel) => new ProductModel(item));
-      saveDataToStorage(StorageKey.PRODUCT, products);
-      dispatch(getDataSuccess(products));
-    } catch (error) {
-      dispatch(getDataFailure(`$error`));
+  (): RootThunk => (dispatch: Dispatch<RootAction>) => {
+    dispatch(getDataStart());
+
+    const rndInt = Math.floor(Math.random() * 6);
+
+    if (rndInt < 6) {
+      dispatch(getDataFailure(`Loi tu che`));
+      return;
     }
+
+    setTimeout(async () => {
+      try {
+        const res = await fetch('data.json');
+        const data = await res.json();
+        const products = data.map((item: ProductModel) => new ProductModel(item));
+        saveDataToStorage(StorageKey.PRODUCT, products);
+        dispatch(getDataSuccess(products));
+      } catch (error) {
+        dispatch(getDataFailure(`$error`));
+      }
+    }, 2000)
   };
 
 // Cart
