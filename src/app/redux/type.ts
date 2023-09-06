@@ -12,5 +12,9 @@ export const LOGIN_START = 'login-start';
 export const LOGIN_SUCCESS = 'login-success';
 export const LOGIN_FAILURE = 'login-failure';
 
+export const LOGOUT_START = 'logout-start';
+export const LOGOUT_SUCCESS = 'logout-success';
+export const LOGOUT_FAILURE = 'logout-failure';
+
 // UI
 export const MODAL_LOGIN_TOGGLE = 'modal-login-toggle';

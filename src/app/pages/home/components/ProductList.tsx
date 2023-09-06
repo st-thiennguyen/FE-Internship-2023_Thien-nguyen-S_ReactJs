@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { ProductModel } from '../../../models';
+import { RootState } from '../../../redux/store';
 import ProductItem from './ProductItem';
 import ProductItemSkeleton from './ProductItemSkeleton';
 import ProductListError from './ProductListError';
@@ -17,6 +18,10 @@ const ProductList = (props: ProductListComponentProps) => {
   const isError = useSelector((state: any) => state.products.isError);
 
   const errorMessage = useSelector((state: any) => state.products.message);
+
+  const isLogin = useSelector(
+    (state: RootState) => Object.entries(state.auth.user).length > 0,
+  );
 
   const isLoadingData = [{}, {}, {}, {}];
 
@@ -38,9 +43,15 @@ const ProductList = (props: ProductListComponentProps) => {
                     return <ProductItemSkeleton key={index} />;
                   })
                 : props.dataProducts!.map((product: ProductModel) => {
-                    return <ProductItem product={product} key={product.id} />;
+                    return (
+                      <ProductItem
+                        product={product}
+                        key={product.id}
+                        isLogin={isLogin}
+                      />
+                    );
                   })}
-              {!isLoading && isError && (
+              {!props.dataProducts?.length && isError && (
                 <ProductListError
                   errorMessage={errorMessage}
                   isLoading={isLoading}

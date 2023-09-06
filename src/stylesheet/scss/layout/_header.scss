@@ -11,6 +11,33 @@
       :last-child {
         margin-right: 0px;
       }
+
+      .header-account {
+        color: #000;
+        position: relative;
+        .header-account-list {
+          position: absolute;
+          top: 100%;
+          right: -50%;
+          width: max-content;
+          display: none;
+          padding: 10px;
+          .header-account-item {
+            background-color: aliceblue;
+            padding: 10px 15px;
+            .account-link {
+              display: block;
+            }
+            border: 1px solid #f4f4f4;
+          }
+        }
+        &:hover .header-account-list {
+          display: block;
+        }
+      }
+    }
+    .icon-link {
+      cursor: pointer;
     }
   }
 }

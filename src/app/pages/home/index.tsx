@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchDataProduct } from '../../redux/actions';
+import { fetchDataProduct } from '../../redux/action';
 import { Contact } from '../../shared/components';
 import Banner from './components/Banner';
 import Category from './components/Category';

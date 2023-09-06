@@ -2,7 +2,7 @@ import { AnyAction, applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk, { ThunkAction } from 'redux-thunk';
 
-import { rootReducer } from './reducer';
+import { rootReducer } from './reducer/index';
 
 export type RootState = ReturnType<typeof rootReducer>;
 

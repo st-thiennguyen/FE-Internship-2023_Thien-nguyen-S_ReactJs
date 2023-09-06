@@ -7,20 +7,30 @@ import icCart from '../../../assets/icons/icon-cart.svg';
 import icSearch from '../../../assets/icons/icon-search.svg';
 import icUser from '../../../assets/icons/icon-user.svg';
 import { CartItemModel } from '../../models';
+import { RootState } from '../../redux/store';
 import { StorageKey } from '../constants';
 import { saveDataToStorage } from '../utils';
 
 type HeaderComponentProps = {
   isLogin: boolean;
-  closeLoginModal: Function;
+  closeLoginModal: () => void;
+  userInfo: any;
+  handleLogout: () => void;
 };
 
-export const Header = ({ isLogin, closeLoginModal }: HeaderComponentProps) => {
+export const Header = ({
+  isLogin,
+  closeLoginModal,
+  userInfo,
+  handleLogout,
+}: HeaderComponentProps) => {
   const location = useLocation();
 
   const navigate = useNavigate();
 
   const cartList = useSelector((state: any) => state.cart.items);
+
+  const isAuthLoading = useSelector((state: RootState) => state.auth.isLoading);
 
   const cartCount = cartList.reduce(
     (total: number, item: CartItemModel) => (total += item.quantity),
@@ -106,8 +116,34 @@ export const Header = ({ isLogin, closeLoginModal }: HeaderComponentProps) => {
                   </span>
                 </li>
                 <li className="icon-item">
-                  <a className="icon-link" href="/#">
+                  <a className="header-account icon-link" href="/#">
                     <img src={icUser} alt="Icon of user account" />
+                    <ul className="header-account-list">
+                      {isLogin ? (
+                        <>
+                          <li className="header-account-item">
+                            Welcome {userInfo?.fullName}
+                          </li>
+                          <li className="header-account-item">
+                            <span
+                              onClick={handleLogout}
+                              className="account-link"
+                            >
+                              {isAuthLoading ? 'Handling' : 'Logout'}
+                            </span>
+                          </li>
+                        </>
+                      ) : (
+                        <li className="header-account-item">
+                          <span
+                            onClick={closeLoginModal}
+                            className="account-link"
+                          >
+                            Login
+                          </span>
+                        </li>
+                      )}
+                    </ul>
                   </a>
                 </li>
               </ul>

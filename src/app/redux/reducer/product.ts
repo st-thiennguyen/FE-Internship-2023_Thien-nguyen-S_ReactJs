@@ -41,6 +41,7 @@ export const productReducer = (state = initialState, action: RootAction) => {
     case ACTIONS_TYPE.GET_DATA_PRODUCT_FAILURE:
       return {
         ...state,
+        data: [],
         isLoading: false,
         isError: true,
         isSuccess: false,

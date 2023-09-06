@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import imageLogin from '../../../assets/images/login-banner.jpg';
-import { login, modalLoginToggle } from '../../redux/actions';
-import { UserAccount } from '../../redux/reducer/auth.reducer';
+import { login } from '../../redux/action';
+import { UserAccount } from '../../redux/reducer/auth';
 import { RootState } from '../../redux/store';
 
 const Login = () => {
@@ -50,6 +50,7 @@ const Login = () => {
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
     dispatch(login(userInfo) as any);
+    setUserInfo({ email: '', password: '' });
   };
 
   return (
@@ -70,6 +71,7 @@ const Login = () => {
                 id="login-email"
                 name="email"
                 className="login-input"
+                value={userInfo.email}
                 placeholder="Enter your email !"
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
@@ -87,6 +89,7 @@ const Login = () => {
                 id="login-password"
                 name="password"
                 className="login-input"
+                value={userInfo.password}
                 placeholder="Enter password"
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, [e.target.name]: e.target.value })

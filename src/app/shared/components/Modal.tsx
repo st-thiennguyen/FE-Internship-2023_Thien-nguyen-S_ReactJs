@@ -8,11 +8,11 @@ type ModalProps = {
 
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   return (
-    <div className={`modal ${isOpen ? 'modal-open' : 'modal-close'}`}>
-      <div className="modal-overlay">
+    <div className="modal">
+      <div className={`modal-overlay ${isOpen ? 'modal-open' : 'modal-close'}`}>
         <div className="modal-content">
           {children}
-          <div className="modal-close" onClick={onClose}>
+          <div className="modal-close-action" onClick={onClose}>
             <i className="icon icon-small icon-close"></i>
           </div>
         </div>

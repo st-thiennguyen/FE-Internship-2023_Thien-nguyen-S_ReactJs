@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { CartItemModel } from '../../../models';
-import { removeItemCart, updateQuantityItemCart } from '../../../redux/actions';
+import { removeItemCart, updateQuantityItemCart } from '../../../redux/action';
 
 interface CartItemComponentProps {
   cartItem: CartItemModel;
