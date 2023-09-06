@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import logo from '../../../assets/icons/ic-logo.svg';
 import icCart from '../../../assets/icons/icon-cart.svg';
@@ -10,8 +10,15 @@ import { CartItemModel } from '../../models';
 import { StorageKey } from '../constants';
 import { saveDataToStorage } from '../utils';
 
-export const Header = () => {
+type HeaderComponentProps = {
+  isLogin: boolean;
+  closeLoginModal: Function;
+};
+
+export const Header = ({ isLogin, closeLoginModal }: HeaderComponentProps) => {
   const location = useLocation();
+
+  const navigate = useNavigate();
 
   const cartList = useSelector((state: any) => state.cart.items);
 
@@ -31,6 +38,14 @@ export const Header = () => {
       setScrolling(true);
     } else if (location.pathname === '/') {
       setScrolling(false);
+    }
+  };
+
+  const handlePreLoadPage = () => {
+    if (!isLogin) {
+      closeLoginModal();
+    } else {
+      navigate('/cart');
     }
   };
 
@@ -83,12 +98,12 @@ export const Header = () => {
                   </a>
                 </li>
                 <li className="header-cart icon-item">
-                  <Link className="icon-link" to={'/cart'}>
+                  <span onClick={handlePreLoadPage} className="icon-link">
                     <img src={icCart} alt="Icon of cart" />
                     <span className="cart-count d-flex justify-center item-center">
                       {cartCount}
                     </span>
-                  </Link>
+                  </span>
                 </li>
                 <li className="icon-item">
                   <a className="icon-link" href="/#">

@@ -1,0 +1,31 @@
+.login-container {
+  width: 100%;
+  .login {
+    &-banner {
+      width: 30%;
+      height: 100%;
+      img {
+        object-fit: contain;
+      }
+    }
+    .form-input {
+      margin-bottom: 20px;
+    }
+    &-input {
+      width: 100%;
+      padding: 10px 15px;
+      outline: none;
+      border: 1px solid #e1e1e1;
+      border-radius: 5px;
+    }
+
+    .btn-login {
+      padding: 8px 20px;
+    }
+
+    &-error-message {
+      font-size: 12px;
+      color: red;
+    }
+  }
+}

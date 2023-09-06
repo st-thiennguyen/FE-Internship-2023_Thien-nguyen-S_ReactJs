@@ -4,7 +4,8 @@ enum ProductStatus {
 }
 enum StorageKey {
   CART = 'cart',
-  PRODUCT = 'products'
+  PRODUCT = 'products',
+  USER = 'user'
 }
 
 export {

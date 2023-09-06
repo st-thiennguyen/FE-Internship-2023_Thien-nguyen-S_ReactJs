@@ -1,0 +1,40 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  &-overlay {
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+  }
+  &-content {
+    width: 50%;
+    max-width: 800px;
+    padding: 15px;
+    margin: auto;
+    background-color: white;
+    transform: translateY(50%);
+    border-radius: 5px;
+    position: relative;
+  }
+  &-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  transition: all ease-in 1s;
+}
+
+.modal-open {
+  z-index: 9;
+  opacity: 1;
+}
+
+.modal-close {
+  z-index: -1;
+  opacity: 0;
+}

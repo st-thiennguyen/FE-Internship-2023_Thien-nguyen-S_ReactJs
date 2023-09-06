@@ -37,6 +37,11 @@
       font-size: 72px;
       font-weight: map-get($font-weight, bold);
     }
+    &-action {
+      img {
+        width: fit-content;
+      }
+    }
     &-action-txt {
       color: map-get($color, white);
       font-size: map-get($font-sizes, xxl);

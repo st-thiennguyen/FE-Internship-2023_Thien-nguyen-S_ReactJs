@@ -6,7 +6,7 @@ $color: (
   greyDark: #c4c4c4,
   dark: #333,
   black: #000,
-  red: #f00
+  red: #f00,
 );
 
 $font-family-base: 'Poppins', sans-serif;
@@ -19,21 +19,21 @@ $font-sizes: (
   md: 16px,
   lg: 18px,
   xl: 20px,
-  xxl: 24px
+  xxl: 24px,
 );
 
 $font-weight: (
   light: 300,
   normal: 400,
   medium: 500,
-  bold: 700
+  bold: 700,
 );
 
 $breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
 
 $icons: (
@@ -52,14 +52,15 @@ $icons: (
   guarantee-b: url('../../../assets/icons/ic-guarantee.svg'),
   quality-y: url('../../../assets/icons/ic-quality-hl.svg'),
   quality-b: url('../../../assets/icons/ic-quality.svg'),
-  trash-ouline: url('../../../assets/icons/ic-trash.svg')
+  trash-ouline: url('../../../assets/icons/ic-trash.svg'),
+  close-b: url('../../../assets/icons/ic-close.svg'),
 );
 
 $image: (
   banner-bg: url('../../../assets/images/banner-bg.png'),
   banner-mb-bg: url('../../../assets/images/banner-mobile-bg.png'),
   footer-bg: url('../../../assets/images/footer-bg.png'),
-  footer-mb-bg: url('../../../assets/images/footer-mobile-bg.png')
+  footer-mb-bg: url('../../../assets/images/footer-mobile-bg.png'),
 );
 
 $opacity-base: 0.5;

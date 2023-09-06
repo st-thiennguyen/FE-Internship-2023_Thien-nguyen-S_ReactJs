@@ -4,6 +4,7 @@ import { RootAction, RootThunk } from './store';
 import * as ACTION_TYPES from './type';
 import { saveDataToStorage } from '../shared/utils';
 import { StorageKey } from '../shared/constants';
+import { UserAccount } from './reducer/auth.reducer';
 
 
 
@@ -74,3 +75,54 @@ export const updateQuantityItemCart = (id: number, quantity: number) => {
     payload: { id, quantity }
   }
 }
+
+// Authentication
+export const loginStart = () => {
+  return {
+    type: ACTION_TYPES.LOGIN_START
+  };
+};
+
+export const loginSuccess = (data: UserAccount) => {
+  return {
+    type: ACTION_TYPES.LOGIN_SUCCESS,
+    payload: data.password
+  };
+};
+
+export const loginFailure = (message: string) => {
+  return {
+    type: ACTION_TYPES.LOGIN_FAILURE,
+    payload: message
+  };
+};
+
+
+export const login = (userData: UserAccount): RootThunk => (dispatch: Dispatch<RootAction>) => {
+  dispatch(loginStart());
+  setTimeout(async () => {
+    try {
+      const res = await fetch('account.json');
+      const data = await res.json();
+      const account: UserAccount = data;
+      if (userData.email !== account.email) {
+        dispatch(loginFailure("Your email is not exist in database"));
+      } else if (userData.password !== account.password) {
+        dispatch(loginFailure("Your password is not match"));
+      } else {
+        saveDataToStorage(StorageKey.USER, account);
+        dispatch(loginSuccess(account));
+        dispatch(modalLoginToggle());
+      }
+    } catch (error) {
+      dispatch(loginFailure(`${error}`));
+    }
+  }, 2000)
+};
+
+// User Interface
+export const modalLoginToggle = () => {
+  return {
+    type: ACTION_TYPES.MODAL_LOGIN_TOGGLE,
+  };
+};

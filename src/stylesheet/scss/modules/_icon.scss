@@ -54,6 +54,10 @@
   &-trash {
     background-image: map-get($icons, trash-ouline);
   }
+
+  &-close {
+    background-image: map-get($icons, close-b);
+  }
 }
 
 .service:hover {
