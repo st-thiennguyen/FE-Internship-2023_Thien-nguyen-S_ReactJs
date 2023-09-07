@@ -108,12 +108,16 @@ export const Header = ({
                   </a>
                 </li>
                 <li className="header-cart icon-item">
-                  <span onClick={handlePreLoadPage} className="icon-link">
+                  <Link
+                    to={isLogin ? '/cart' : ''}
+                    onClick={handlePreLoadPage}
+                    className="icon-link"
+                  >
                     <img src={icCart} alt="Icon of cart" />
                     <span className="cart-count d-flex justify-center item-center">
                       {cartCount}
                     </span>
-                  </span>
+                  </Link>
                 </li>
                 <li className="icon-item">
                   <a className="header-account icon-link" href="/#">
@@ -125,22 +129,24 @@ export const Header = ({
                             Welcome {userInfo?.fullName}
                           </li>
                           <li className="header-account-item">
-                            <span
+                            <Link
+                              to={''}
                               onClick={handleLogout}
                               className="account-link"
                             >
                               {isAuthLoading ? 'Handling' : 'Logout'}
-                            </span>
+                            </Link>
                           </li>
                         </>
                       ) : (
                         <li className="header-account-item">
-                          <span
+                          <Link
+                            to={''}
                             onClick={closeLoginModal}
                             className="account-link"
                           >
                             Login
-                          </span>
+                          </Link>
                         </li>
                       )}
                     </ul>
