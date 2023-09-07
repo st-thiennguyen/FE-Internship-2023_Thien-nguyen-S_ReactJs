@@ -8,6 +8,8 @@ enum StorageKey {
   USER = 'user'
 }
 
+const EmailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 export {
-  ProductStatus, StorageKey
+  ProductStatus, StorageKey, EmailRegex
 };
+

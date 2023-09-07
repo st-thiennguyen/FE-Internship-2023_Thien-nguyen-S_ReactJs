@@ -93,6 +93,26 @@
   }
 }
 
+@media screen and (max-width: map-get($breakpoints, lg)) {
+  .container {
+    max-width: calc(100vw - 48px);
+  }
+
+  .row {
+    margin: calc(0px - $p-col-sm);
+  }
+
+  .col {
+    padding: $p-col-sm;
+  }
+
+  @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+      width: percentage(calc($i / 12));
+    }
+  }
+}
+
 @media screen and (max-width: map-get($breakpoints, md)) {
   .container {
     max-width: calc(100vw - 48px);

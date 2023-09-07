@@ -2,8 +2,7 @@ import { Dispatch } from 'react';
 import { ProductModel } from '../../models';
 import { RootAction, RootThunk } from '../store';
 import * as ACTION_TYPES from '../type';
-import { saveDataToStorage } from '../../shared/utils';
-import { StorageKey } from '../../shared/constants';
+import { getProducts } from '../../shared/services/product';
 
 
 // Products
@@ -29,7 +28,7 @@ export const getDataFailure = (message: string) => {
 
 
 export const fetchDataProduct =
-  (): RootThunk => (dispatch: Dispatch<RootAction>) => {
+  (): RootThunk => async (dispatch: Dispatch<RootAction>) => {
     dispatch(getDataStart());
 
     const rndInt = Math.floor(Math.random() * 6);
@@ -39,15 +38,9 @@ export const fetchDataProduct =
       return;
     }
 
-    setTimeout(async () => {
-      try {
-        const res = await fetch('data.json');
-        const data = await res.json();
-        const products = data.map((item: ProductModel) => new ProductModel(item));
-        saveDataToStorage(StorageKey.PRODUCT, products);
-        dispatch(getDataSuccess(products));
-      } catch (error) {
-        dispatch(getDataFailure(`$error`));
-      }
-    }, 2000)
+    await getProducts().then((result: any) => {
+      dispatch(getDataSuccess(result));
+    }).catch((err) => {
+      dispatch(getDataFailure(`${err}`));
+    });
   };

@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import imageLogin from '../../../assets/images/login-banner.jpg';
 import { login } from '../../redux/action';
 import { UserAccount } from '../../redux/reducer/auth';
 import { RootState } from '../../redux/store';
+import { EmailRegex } from '../constants';
 
-const Login = () => {
+type LoginPops = {
+  previousPath: string;
+};
+
+const Login = ({ previousPath }: LoginPops) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const message = useSelector((state: RootState) => state.auth.message);
 
@@ -18,38 +26,46 @@ const Login = () => {
     password: '',
   });
 
-  const [isError, setError] = useState({
-    email: ' ',
-    password: ' ',
-  });
+  const [errors, setErrors] = useState({ email: '', password: '' });
 
-  const error = {
-    email: '',
-    password: '',
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+    validateForm(e.target.name);
   };
 
-  const onBlurInput = (e: React.FocusEvent) => {
-    var mailFormat =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!userInfo.email) {
-      error.email = 'Email is required';
-    } else if (!userInfo.email.match(mailFormat)) {
-      error.email = 'Email is not valid';
-    } else {
-      error.email = '';
+  const validateForm = (name: string) => {
+    const newErrors = {
+      email: '',
+      password: '',
+    };
+
+    if (name === 'email') {
+      if (userInfo.email.trim() === '') {
+        newErrors.email = 'Email is required';
+      }
+
+      if (!userInfo.email.match(EmailRegex)) {
+        newErrors.email = 'Email is not valid';
+      }
     }
 
-    if (!userInfo.password) {
-      error.password = 'Password is required';
-    } else {
-      error.password = '';
+    if (name === 'password') {
+      if (userInfo.password.length < 5) {
+        newErrors.password = 'Password must be at least 6 characters long';
+      }
     }
-    setError(error);
+
+    setErrors(newErrors);
   };
 
-  const handleLogin = (event: React.FormEvent) => {
+  const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(login(userInfo) as any);
+    await dispatch(login(userInfo) as any);
+    navigate(previousPath);
     setUserInfo({ email: '', password: '' });
   };
 
@@ -59,7 +75,7 @@ const Login = () => {
         <div className="login-banner col col-4">
           <img src={imageLogin} aria-hidden alt="Login banner image" />
         </div>
-        <div className="login-content col col-8 col-sm-12">
+        <div className="login-content col col-8 col-lg-12 col-sm-12">
           <h3 className="login-title text-center">Login</h3>
           <form onSubmit={handleLogin} className="login-form">
             <div className="form-input">
@@ -75,12 +91,9 @@ const Login = () => {
                 value={userInfo.email}
                 placeholder="Enter your email !"
                 required
-                onChange={(e) =>
-                  setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
-                }
-                onBlur={onBlurInput}
+                onChange={handleChange}
               />
-              <ErrorValidate text={isError.email} />
+              <ErrorValidate text={errors.email} />
             </div>
             <div className="form-input">
               <label className="login-input-label" htmlFor="login-password">
@@ -95,12 +108,9 @@ const Login = () => {
                 className="login-input"
                 value={userInfo.password}
                 placeholder="Enter password"
-                onChange={(e) =>
-                  setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
-                }
-                onBlur={onBlurInput}
+                onChange={handleChange}
               />
-              <ErrorValidate text={isError.password} />
+              <ErrorValidate text={errors.password} />
             </div>
             <input
               className={`btn btn-primary btn-login ${

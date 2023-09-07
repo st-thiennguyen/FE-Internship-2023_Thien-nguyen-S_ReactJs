@@ -1,16 +1,5 @@
-.section-header-content {
-  .cart-header {
-    background-color: #f5f7fc;
-    padding: 100px;
-    margin-top: 50px;
-  }
-}
-
 .section-cart {
-  .cart-title {
-    font-size: map-get($font-sizes, xxl);
-  }
-
+  margin-top: 100px;
   .cart-table,
   .cart-total-wrapper {
     width: 100%;
@@ -96,4 +85,18 @@
   width: 400px;
   height: 400px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: map-get($breakpoints, lg)) {
+  .cart-table {
+    min-width: 850px;
+  }
+  .table-header th:nth-child(3) {
+    display: none;
+  }
+  .cart-item {
+    .product-price {
+      display: none;
+    }
+  }
 }

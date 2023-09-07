@@ -109,8 +109,8 @@ export const Header = ({
                 </li>
                 <li className="header-cart icon-item">
                   <Link
-                    to={isLogin ? '/cart' : ''}
                     onClick={handlePreLoadPage}
+                    to={'/cart'}
                     className="icon-link"
                   >
                     <img src={icCart} alt="Icon of cart" />

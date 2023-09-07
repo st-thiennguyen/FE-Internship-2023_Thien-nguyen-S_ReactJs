@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import '../stylesheet/scss/style.scss';
 import Cart from './pages/cart';
@@ -16,11 +16,21 @@ import { saveDataToStorage } from './shared/utils';
 function App() {
   const { pathname } = useLocation();
 
+  const [previousPath, setPreviousPath] = useState('/');
+
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const useInfo = useSelector((state: RootState) => state.auth.user);
 
   const isLogin = Object.entries(useInfo).length > 0;
+
+  useEffect(() => {
+    if (pathname) {
+      setPreviousPath(pathname);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,13 +50,20 @@ function App() {
 
   const closeLoginModal = () => {
     dispatch(modalLoginToggle());
+    if (pathname !== '/') {
+      navigate('/');
+    }
   };
 
   const routes = [
-    { path: '/', element: <Home /> },
+    { path: '/', element: <Home isLogin={isLogin} path={previousPath} /> },
     {
       path: '/cart',
-      element: isLogin ? <Cart /> : <Navigate to="/" />,
+      element: isLogin ? (
+        <Cart />
+      ) : (
+        <Home isLogin={isLogin} path={previousPath} />
+      ),
     },
   ];
   return (
@@ -70,7 +87,7 @@ function App() {
           })}
       </Routes>
       <Modal isOpen={isOpenModalLogin} onClose={closeLoginModal}>
-        <Login />
+        <Login previousPath={previousPath} />
       </Modal>
       <Footer />
     </>

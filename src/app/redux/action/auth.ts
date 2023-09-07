@@ -5,6 +5,7 @@ import { saveDataToStorage } from '../../shared/utils';
 import { StorageKey } from '../../shared/constants';
 import { UserAccount } from '../reducer/auth';
 import { modalLoginToggle } from './ui';
+import { loginService } from '../../shared/services/auth';
 
 // Authentication
 export const loginStart = () => {
@@ -52,27 +53,20 @@ export const logoutFailure = (message: string) => {
 
 
 
-export const login = (userData: UserAccount): RootThunk => (dispatch: Dispatch<RootAction>) => {
+export const login = (userData: UserAccount): RootThunk => async (dispatch: Dispatch<RootAction>) => {
   dispatch(loginStart());
-  setTimeout(async () => {
-    try {
-      const res = await fetch('account.json');
-      const data = await res.json();
-      const account: any = data;
-      if (userData.email !== account.email) {
-        dispatch(loginFailure("Your email is not exist in database"));
-      } else if (userData.password !== account.password) {
-        dispatch(loginFailure("Your password is not match"));
-      } else {
-        const { password, ...newObject } = account;
-        saveDataToStorage(StorageKey.USER, newObject);
-        dispatch(modalLoginToggle());
-        dispatch(loginSuccess(newObject));
-      }
-    } catch (error) {
-      dispatch(loginFailure(`${error}`));
+  await loginService().then((result: any) => {
+    if (userData.email !== result.email || userData.password !== result.password) {
+      dispatch(loginFailure("Email or password is not valid"));
+    } else {
+      const { password, ...newObject } = result;
+      saveDataToStorage(StorageKey.USER, newObject);
+      dispatch(modalLoginToggle());
+      dispatch(loginSuccess(newObject));
     }
-  }, 2000)
+  }).catch((err) => {
+    dispatch(loginFailure(`${err}`));
+  });;
 };
 
 
@@ -80,7 +74,6 @@ export const logout = (): RootThunk => (dispatch: Dispatch<RootAction>) => {
   dispatch(logoutStart());
   setTimeout(async () => {
     try {
-
       saveDataToStorage(StorageKey.USER, {});
       dispatch(logoutSuccess());
     } catch (error) {

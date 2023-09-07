@@ -14,7 +14,7 @@ export const uiReducer = (state = initialState, action: RootAction) => {
     case ACTIONS_TYPE.MODAL_LOGIN_TOGGLE:
       return {
         ...state,
-        isOpenModalLogin: !state.isOpenModalLogin
+        isOpenModalLogin: action.payload ?? !state.isOpenModalLogin
       }
     default:
       return state;

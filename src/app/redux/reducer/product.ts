@@ -1,4 +1,6 @@
 import { ProductModel } from '../../models';
+import { StorageKey } from '../../shared/constants';
+import { getDataFromStorage } from '../../shared/utils';
 import { RootAction } from '../store';
 import * as ACTIONS_TYPE from '../type';
 
@@ -13,7 +15,7 @@ type productStateProps = {
 
 
 const initialState: productStateProps = {
-  data: [],
+  data: getDataFromStorage(StorageKey.PRODUCT),
   isLoading: false,
   isSuccess: false,
   isError: false,
