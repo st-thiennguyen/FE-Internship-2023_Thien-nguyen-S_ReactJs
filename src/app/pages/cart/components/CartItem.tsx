@@ -53,6 +53,7 @@ const CartItem = (props: CartItemComponentProps) => {
             <div className="product-img d-inline-flex">
               <img src={cartItem.image} alt={cartItem.name} />
             </div>
+            <h4 className="product-name-under">{cartItem.name}</h4>
           </a>
         </td>
         <td className="product-name">
@@ -62,38 +63,49 @@ const CartItem = (props: CartItemComponentProps) => {
         </td>
         <td className="product-price">${cartItem.finalPrice?.toFixed(2)}</td>
         <td className="product-quantity">
-          {isEditable ? (
-            <input
-              ref={quantityRef}
-              className="quantity"
-              type="number"
-              defaultValue={cartItem.quantity}
-              autoFocus
-              onBlur={blurToQuantityInput}
-              onKeyDown={enterToQuantityInput}
-            />
-          ) : (
-            <>
-              <button
-                className="btn-cart-minus"
-                onClick={() => handleUpdateQuantity(cartItem.quantity - 1)}
-              >
-                -
-              </button>
-              <span
+          <div className="product-quantity-wrapper d-flex flex-column item-center">
+            {isEditable ? (
+              <input
+                ref={quantityRef}
                 className="quantity"
-                onDoubleClick={() => setEditable(true)}
-              >
-                {cartItem.quantity}
-              </span>
-              <button
-                className="btn-cart-plus"
-                onClick={() => handleUpdateQuantity(cartItem.quantity + 1)}
-              >
-                +
-              </button>
-            </>
-          )}
+                type="number"
+                defaultValue={cartItem.quantity}
+                autoFocus
+                onBlur={blurToQuantityInput}
+                onKeyDown={enterToQuantityInput}
+              />
+            ) : (
+              <>
+                <div className="product-quantity-action d-flex item-center">
+                  <button
+                    className="btn-cart-minus"
+                    onClick={() => handleUpdateQuantity(cartItem.quantity - 1)}
+                  >
+                    -
+                  </button>
+                  <span
+                    className="quantity"
+                    onDoubleClick={() => setEditable(true)}
+                  >
+                    {cartItem.quantity}
+                  </span>
+                  <button
+                    className="btn-cart-plus"
+                    onClick={() => handleUpdateQuantity(cartItem.quantity + 1)}
+                  >
+                    +
+                  </button>
+                </div>
+              </>
+            )}
+            <hr className="divided" />
+            <button
+              className="btn product-remove-link"
+              onClick={handleDeleteItem}
+            >
+              Delete
+            </button>
+          </div>
         </td>
         <td className="product-subtotal">${cartItem.subTotal?.toFixed(2)}</td>
         <td className="product-remove">

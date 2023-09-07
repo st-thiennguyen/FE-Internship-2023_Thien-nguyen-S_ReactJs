@@ -12,9 +12,9 @@ const Service = () => {
           </div>
 
           <ul className="services-list row justify-between">
-            <li className="service-item col col-3 col-sm-12">
+            <li className="service-item col col-3 col-lg-6 col-sm-12">
               <div className="service">
-                <a href="/#" className="service-action">
+                <a href="/#" className="service-action d-flex item-start">
                   <div className="service-image d-flex justify-center item-center">
                     <i className="icon icon-truck-service"></i>
                   </div>
@@ -28,9 +28,9 @@ const Service = () => {
                 </a>
               </div>
             </li>
-            <li className="service-item col col-3 col-sm-12">
+            <li className="service-item col col-3 col-lg-6 col-sm-12">
               <div className="service">
-                <a href="/#" className="service-action">
+                <a href="/#" className="service-action d-flex item-start">
                   <div className="service-image d-flex justify-center item-center">
                     <i className="icon icon-payment-service"></i>
                   </div>
@@ -44,9 +44,9 @@ const Service = () => {
                 </a>
               </div>
             </li>
-            <li className="service-item col col-3 col-sm-12">
+            <li className="service-item col col-3 col-lg-6 col-sm-12">
               <div className="service">
-                <a href="/#" className="service-action">
+                <a href="/#" className="service-action d-flex item-start">
                   <div className="service-image d-flex justify-center item-center">
                     <i className="icon icon-guarantee-service"></i>
                   </div>
@@ -60,9 +60,9 @@ const Service = () => {
                 </a>
               </div>
             </li>
-            <li className="service-item col col-3 col-sm-12">
+            <li className="service-item col col-3 col-lg-6 col-sm-12">
               <div className="service">
-                <a href="/#" className="service-action">
+                <a href="/#" className="service-action d-flex item-start">
                   <div className="service-image d-flex justify-center item-center">
                     <i className="icon icon-quality-service"></i>
                   </div>

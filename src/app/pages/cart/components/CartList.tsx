@@ -68,7 +68,7 @@ const CartList = () => {
                 Back to home
               </Link>
               {cartList?.length > 0 && (
-                <div className="d-flex justify-end item-center">
+                <div className="d-flex justify-end item-center cart-checkout">
                   <p className="total-price">
                     Total :{' '}
                     <span className="price" id="cart-total-price">

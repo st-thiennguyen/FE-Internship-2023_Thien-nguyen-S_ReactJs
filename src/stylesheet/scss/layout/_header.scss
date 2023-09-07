@@ -27,6 +27,7 @@
             padding: 10px 15px;
             .account-link {
               display: block;
+              height: 100%;
             }
             border: 1px solid #f4f4f4;
           }
@@ -50,9 +51,31 @@
   color: white;
 }
 
+.header-cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  background-color: map-get($color, red);
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  font-size: 10px;
+  color: map-get($color, white);
+  font-weight: map-get($font-weight, medium);
+}
+
 @media screen and (max-width: 768px) {
   .header {
     background-color: map-get($color, primary) !important;
+  }
+
+  .cart-count {
+    top: 5px;
+    left: 5px;
   }
 
   .header-desktop {

@@ -170,25 +170,29 @@ export const Header = ({
                       onClick={handleLogout}
                       className="account-link navbar-mobile-link d-flex item-center"
                     >
-                      <i className="icon icon-logout-mb"></i>
+                      Logout
                     </Link>
                   ) : (
                     <Link
+                      className="account-link navbar-mobile-link d-flex item-center"
                       to={''}
                       onClick={closeLoginModal}
-                      className="account-link navbar-mobile-link d-flex item-center"
                     >
                       <i className="icon icon-user-mb"></i>
                     </Link>
                   )}
                 </li>
                 <li className="navbar-mobile-item">
-                  <a
-                    href="/#"
-                    className="navbar-mobile-link d-flex item-center"
+                  <Link
+                    className="navbar-mobile-link header-cart d-flex item-center"
+                    onClick={handlePreLoadPage}
+                    to={'/cart'}
                   >
                     <i className="icon icon-cart-mb"></i>
-                  </a>
+                    <span className="cart-count d-flex justify-center item-center">
+                      {cartCount}
+                    </span>
+                  </Link>
                 </li>
                 <li className="navbar-mobile-item">
                   <a
