@@ -7,10 +7,10 @@
     right: 0;
     bottom: 0;
     background-color: rgba($color: #000000, $alpha: 0.5);
-    transition: all ease-in 0.7s;
+    transition: all ease-in 0.1s;
   }
   &-content {
-    width: 50%;
+    width: 70%;
     max-width: 800px;
     padding: 15px;
     margin: auto;
@@ -36,4 +36,10 @@
 .modal-close {
   z-index: -1;
   opacity: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .modal-content {
+    width: 90%;
+  }
 }

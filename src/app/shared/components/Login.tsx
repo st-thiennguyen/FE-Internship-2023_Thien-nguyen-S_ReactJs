@@ -40,7 +40,7 @@ const Login = () => {
     }
 
     if (!userInfo.password) {
-      error.password = 'Password is not valid';
+      error.password = 'Password is required';
     } else {
       error.password = '';
     }
@@ -59,7 +59,7 @@ const Login = () => {
         <div className="login-banner col col-4">
           <img src={imageLogin} aria-hidden alt="Login banner image" />
         </div>
-        <div className="login-content col col-8">
+        <div className="login-content col col-8 col-sm-12">
           <h3 className="login-title text-center">Login</h3>
           <form onSubmit={handleLogin} className="login-form">
             <div className="form-input">
@@ -67,12 +67,14 @@ const Login = () => {
                 Email :{' '}
               </label>
               <input
+                autoFocus
                 type="email"
                 id="login-email"
                 name="email"
                 className="login-input"
                 value={userInfo.email}
                 placeholder="Enter your email !"
+                required
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
                 }
@@ -85,6 +87,8 @@ const Login = () => {
                 Password :{' '}
               </label>
               <input
+                autoFocus
+                required
                 type="password"
                 id="login-password"
                 name="password"

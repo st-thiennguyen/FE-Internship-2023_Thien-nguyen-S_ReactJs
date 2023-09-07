@@ -372,13 +372,15 @@
       .contact-form {
         text-align: end;
         .form-contact {
+          width: 100%;
           display: flex;
           flex-direction: column;
         }
       }
 
       .form-contact-input {
-        min-width: calc(100vw - 48px);
+        width: 100%;
+        min-width: 200px;
         margin: 0;
       }
     }

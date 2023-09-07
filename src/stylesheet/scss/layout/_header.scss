@@ -52,7 +52,7 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    background-color: map-get($color, white);
+    background-color: map-get($color, primary) !important;
   }
 
   .header-desktop {

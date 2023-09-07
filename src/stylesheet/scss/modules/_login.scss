@@ -29,3 +29,9 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .login-banner {
+    display: none;
+  }
+}

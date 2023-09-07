@@ -152,18 +152,29 @@ export const Header = ({
           <div className="header-mobile d-hidden justify-between item-center">
             <div className="header-mobile-logo">
               <a href="/#" className="d-flex item-center">
-                <img src="./" aria-hidden alt="Image of logo Eshop" />
+                <img src={logo} aria-hidden alt="Image of logo Eshop" />
               </a>
             </div>
             <nav className="navbar-mobile">
               <ul className="navbar-mobile-list d-flex">
                 <li className="navbar-mobile-item">
-                  <a
-                    href="/#"
-                    className="navbar-mobile-link d-flex item-center"
-                  >
-                    <i className="icon icon-search"></i>
-                  </a>
+                  {isLogin ? (
+                    <Link
+                      to={''}
+                      onClick={handleLogout}
+                      className="account-link navbar-mobile-link d-flex item-center"
+                    >
+                      <i className="icon icon-logout-mb"></i>
+                    </Link>
+                  ) : (
+                    <Link
+                      to={''}
+                      onClick={closeLoginModal}
+                      className="account-link navbar-mobile-link d-flex item-center"
+                    >
+                      <i className="icon icon-user-mb"></i>
+                    </Link>
+                  )}
                 </li>
                 <li className="navbar-mobile-item">
                   <a
@@ -178,7 +189,7 @@ export const Header = ({
                     href="/#"
                     className="navbar-mobile-link d-flex item-center"
                   >
-                    <i className="icon icon-user-mb"></i>
+                    <i className="icon icon-search"></i>
                   </a>
                 </li>
               </ul>
