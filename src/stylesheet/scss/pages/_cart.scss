@@ -92,6 +92,21 @@
       }
     }
   }
+  // POPUP DELETE
+  .cart-item-popup {
+    padding: 30px;
+    .popup-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    .popup-subtitle {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+    .popup-action {
+      gap: 15px;
+    }
+  }
 }
 
 .cart-empty-animate {

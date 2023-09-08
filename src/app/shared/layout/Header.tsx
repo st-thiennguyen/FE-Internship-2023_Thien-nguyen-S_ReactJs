@@ -120,7 +120,7 @@ export const Header = ({
                   </Link>
                 </li>
                 <li className="icon-item">
-                  <a className="header-account icon-link" href="/#">
+                  <div className="header-account">
                     <img src={icUser} alt="Icon of user account" />
                     <ul className="header-account-list">
                       {isLogin ? (
@@ -150,7 +150,7 @@ export const Header = ({
                         </li>
                       )}
                     </ul>
-                  </a>
+                  </div>
                 </li>
               </ul>
             </div>

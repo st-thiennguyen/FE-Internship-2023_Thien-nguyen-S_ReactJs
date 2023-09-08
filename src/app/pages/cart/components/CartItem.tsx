@@ -2,24 +2,19 @@ import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { CartItemModel } from '../../../models';
-import { removeItemCart, updateQuantityItemCart } from '../../../redux/action';
+import { updateQuantityItemCart } from '../../../redux/action';
 
 interface CartItemComponentProps {
   cartItem: CartItemModel;
+  toggleModal: (idItem: number) => void;
 }
 
-const CartItem = (props: CartItemComponentProps) => {
-  const cartItem: CartItemModel = props.cartItem;
-
+const CartItem = ({ toggleModal, cartItem }: CartItemComponentProps) => {
   const [isEditable, setEditable] = useState(false);
 
   const quantityRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
-
-  const handleDeleteItem = () => {
-    dispatch(removeItemCart(cartItem.id));
-  };
 
   const handleUpdateQuantity = (quantity: number) => {
     dispatch(updateQuantityItemCart(cartItem.id, quantity));
@@ -101,7 +96,7 @@ const CartItem = (props: CartItemComponentProps) => {
             <hr className="divided" />
             <button
               className="btn product-remove-link"
-              onClick={handleDeleteItem}
+              onClick={() => toggleModal(cartItem.id)}
             >
               Delete
             </button>
@@ -111,7 +106,7 @@ const CartItem = (props: CartItemComponentProps) => {
         <td className="product-remove">
           <button
             className="btn product-remove-link"
-            onClick={handleDeleteItem}
+            onClick={() => toggleModal(cartItem.id)}
           >
             <i className="icon icon-small icon-trash"></i>
           </button>

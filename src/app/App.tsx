@@ -37,7 +37,7 @@ function App() {
     saveDataToStorage(StorageKey.USER, useInfo);
   }, [useInfo]);
 
-  const isOpenModalLogin = useSelector(
+  const isOpenModal = useSelector(
     (state: RootState) => state.userInterface.isOpenModalLogin,
   );
 
@@ -83,7 +83,7 @@ function App() {
             );
           })}
       </Routes>
-      <Modal isOpen={isOpenModalLogin} onClose={closeLoginModal}>
+      <Modal isOpen={isOpenModal} onClose={closeLoginModal}>
         <Login previousPath={previousPath} />
       </Modal>
       <Footer />
