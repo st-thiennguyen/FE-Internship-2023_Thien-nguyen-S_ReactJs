@@ -9,8 +9,13 @@ type ModalProps = {
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   return (
     <div className="modal">
-      <div className={`modal-overlay ${isOpen ? 'modal-open' : 'modal-close'}`}>
-        <div className="modal-content">
+      <div
+        className={`modal-overlay ${isOpen ? 'modal-open' : 'modal-close'}`}
+        onClick={(e) => {
+          onClose();
+        }}
+      >
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           {children}
           <div className="modal-close-action" onClick={onClose}>
             <i className="icon icon-small icon-close"></i>

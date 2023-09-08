@@ -25,7 +25,7 @@ const ProductItem = ({ product, isLogin }: ProductItemProps) => {
 
   return (
     <>
-      <li className="col col-3 col-sm-6">
+      <li className="col col-3 col-sm-6 col-lg-6">
         <div className="product">
           <a
             className={`product-action ${

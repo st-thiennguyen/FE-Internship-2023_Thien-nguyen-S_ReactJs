@@ -3,7 +3,7 @@ import React from 'react';
 const ProductItemSkeleton = () => {
   return (
     <>
-      <li className="col col-3 col-sm-6">
+      <li className="col col-3 col-sm-6 col-lg-6">
         <div className="product">
           <a className="product-action" href="/">
             <div className="product-image skeleton"></div>
