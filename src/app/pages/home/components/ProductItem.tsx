@@ -2,27 +2,30 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { CartItemModel, ProductModel } from '../../../models';
-import { addItemCart } from '../../../redux/actions';
+import { addItemCart, modalLoginToggle } from '../../../redux/action';
 import { ProductStatus } from '../../../shared/constants/constants';
 
 interface ProductItemProps {
   product: ProductModel;
+  isLogin: boolean;
 }
 
-const ProductItem = (props: ProductItemProps) => {
-  const { product } = props;
-
+const ProductItem = ({ product, isLogin }: ProductItemProps) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-    const cartItem = new CartItemModel(product, 1);
-    dispatch(addItemCart(cartItem));
+    if (isLogin) {
+      const cartItem = new CartItemModel(product, 1);
+      dispatch(addItemCart(cartItem));
+    } else {
+      dispatch(modalLoginToggle());
+    }
   };
 
   return (
     <>
-      <li className="col col-3 col-sm-6">
+      <li className="col col-3 col-sm-6 col-lg-6">
         <div className="product">
           <a
             className={`product-action ${

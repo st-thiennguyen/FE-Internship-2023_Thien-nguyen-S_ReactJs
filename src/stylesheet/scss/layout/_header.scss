@@ -2,7 +2,7 @@
 
 .header {
   @include position(0, 0, null, 0, fixed);
-  z-index: 9;
+  z-index: 5;
   .header-desktop {
     margin-top: 48px;
 
@@ -11,6 +11,34 @@
       :last-child {
         margin-right: 0px;
       }
+
+      .header-account {
+        color: #000;
+        position: relative;
+        .header-account-list {
+          position: absolute;
+          top: 100%;
+          right: -50%;
+          width: max-content;
+          display: none;
+          padding: 10px;
+          .header-account-item {
+            background-color: aliceblue;
+            padding: 10px 15px;
+            .account-link {
+              display: block;
+              height: 100%;
+            }
+            border: 1px solid #f4f4f4;
+          }
+        }
+        &:hover .header-account-list {
+          display: block;
+        }
+      }
+    }
+    .icon-link {
+      cursor: pointer;
     }
   }
 }
@@ -23,9 +51,31 @@
   color: white;
 }
 
+.header-cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  background-color: map-get($color, red);
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  font-size: 10px;
+  color: map-get($color, white);
+  font-weight: map-get($font-weight, medium);
+}
+
 @media screen and (max-width: 768px) {
   .header {
-    background-color: map-get($color, white);
+    background-color: map-get($color, primary) !important;
+  }
+
+  .cart-count {
+    top: 5px;
+    left: 5px;
   }
 
   .header-desktop {

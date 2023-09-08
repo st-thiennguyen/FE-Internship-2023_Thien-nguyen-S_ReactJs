@@ -31,6 +31,12 @@
       margin-bottom: 18px;
     }
 
+    .footer-logo-link {
+      img {
+        width: fit-content;
+      }
+    }
+
     .subitem-item-link {
       color: map-get($color, white);
       font-size: map-get($font-sizes, sm);

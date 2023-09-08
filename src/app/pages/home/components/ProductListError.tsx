@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { fetchDataProduct } from '../../../redux/actions';
+import { fetchDataProduct } from '../../../redux/action';
 
 type ErrorMessage = { errorMessage: string; isLoading: boolean };
 
@@ -13,11 +13,9 @@ const ProductListError = ({ errorMessage, isLoading }: ErrorMessage) => {
   return (
     <div className="data-error">
       <h3 className="error-title">Error</h3>
-      <p className="error-message">
-        {errorMessage || 'Some thing went wrong !'}
-      </p>
+      <p className="error-message">{errorMessage}</p>
       <button
-        className={`btn btn-primary btn-refresh ${isLoading ? 'disabled' : ''}`}
+        className={`btn btn-primary ${isLoading ? 'disabled' : ''}`}
         disabled={isLoading ? true : false}
         onClick={handleRefresh}
       >

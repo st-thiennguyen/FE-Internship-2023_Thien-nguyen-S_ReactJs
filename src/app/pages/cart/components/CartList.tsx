@@ -1,16 +1,37 @@
 import lottie from 'lottie-web';
-import React, { useEffect, useMemo, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import cartEmptyAnim from '../../../../assets/animation/cart-emty.json';
 import { CartItemModel } from '../../../models';
+import { removeItemCart } from '../../../redux/action';
+import Modal from '../../../shared/components/Modal';
 import CartItem from './CartItem';
+import PopUpDelete from './PopUpDelete';
 
 const CartList = () => {
   const animationRef = useRef<any>(null);
 
+  const dispatch = useDispatch();
+
   const cartList = useSelector((state: any) => state.cart.items);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const [idItem, setIdItem] = useState<number>();
+
+  const toggleModal = (idItem: number) => {
+    setOpenModal(!openModal);
+    setIdItem(idItem);
+  };
+
+  const handleDeleteItem = () => {
+    if (idItem) {
+      dispatch(removeItemCart(idItem));
+      setOpenModal(!openModal);
+    }
+  };
 
   const cartTotal = useMemo(() => {
     return cartList.reduce(
@@ -51,7 +72,13 @@ const CartList = () => {
                 <tbody>
                   {cartList &&
                     cartList?.map((cartItem: CartItemModel) => {
-                      return <CartItem cartItem={cartItem} key={cartItem.id} />;
+                      return (
+                        <CartItem
+                          toggleModal={toggleModal}
+                          cartItem={cartItem}
+                          key={cartItem.id}
+                        />
+                      );
                     })}
                 </tbody>
               </table>
@@ -68,7 +95,7 @@ const CartList = () => {
                 Back to home
               </Link>
               {cartList?.length > 0 && (
-                <div className="d-flex justify-end item-center">
+                <div className="d-flex justify-end item-center cart-checkout">
                   <p className="total-price">
                     Total :{' '}
                     <span className="price" id="cart-total-price">
@@ -84,6 +111,12 @@ const CartList = () => {
             </div>
           </div>
         </div>
+        <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
+          <PopUpDelete
+            onCancel={() => setOpenModal(false)}
+            onExcute={handleDeleteItem}
+          />
+        </Modal>
       </section>
     </>
   );

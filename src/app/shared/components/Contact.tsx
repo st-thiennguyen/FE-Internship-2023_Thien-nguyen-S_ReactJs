@@ -13,10 +13,13 @@ const Contact = () => {
               </p>
             </div>
             <div className="contact-form col col-6 col-sm-12">
-              <form action="#" className="form-contact">
+              <form
+                action="#"
+                className="form-contact d-flex flex-wrap justify-end"
+              >
                 <input
                   type="email"
-                  className="form-contact-input"
+                  className="form-contact-input col-lg-12"
                   placeholder="Enter your email"
                   required
                 />

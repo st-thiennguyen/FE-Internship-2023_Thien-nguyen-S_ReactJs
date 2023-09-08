@@ -13,6 +13,12 @@
   cursor: pointer;
 }
 
+.btn.disabled {
+  background-color: map-get($color, greyDark);
+  color: map-get($color, white);
+  cursor: progress;
+}
+
 .btn-rounded {
   border: 1px solid;
 }

@@ -8,7 +8,7 @@ const Category = () => {
       <section className="section section-categories">
         <div className="container">
           <ul className="category-list row">
-            <li className="category-item col col-6 col-sm-12">
+            <li className="category-item col col-6 col-lg-12">
               <div className="category">
                 <img
                   src={category01}
@@ -24,7 +24,7 @@ const Category = () => {
               </div>
             </li>
 
-            <li className="category-item col col-3 col-sm-6">
+            <li className="category-item col col-3 col-lg-6">
               <div className="category">
                 <img
                   src={category02}
@@ -40,7 +40,7 @@ const Category = () => {
               </div>
             </li>
 
-            <li className="category-item col col-3 col-sm-6">
+            <li className="category-item col col-3 col-lg-6">
               <div className="category">
                 <img
                   src={category03}
